@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dreamy Delight - Saved Addresses</title>
+    <style>
+        /* SOFT & PREMIUM COLOR PALETTE */
+        :root {
+            --bg-color: #FCF9F2; 
+            --primary-dark: #2C363F; 
+            --accent-color: #E76F51; 
+            --accent-light: #F4A261; 
+            --text-muted: #888888;
+            --card-bg: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background: var(--bg-color); padding-bottom: 90px; overflow-x: hidden; color: var(--primary-dark); }
+        ::-webkit-scrollbar { display: none; }
+
+        /* HEADER - LIGHT YELLOW THEME */
+        .topbar{ height: 65px; background: #FFE66D; color: var(--primary-dark); display:flex; align-items:center; padding:0 15px; position: sticky; top:0; z-index:100; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; }
+        .back-arrow { font-size: 26px; cursor: pointer; margin-right: 15px; font-weight: bold; transition: transform 0.2s; }
+        .back-arrow:active { transform: scale(0.9); }
+        .top-title{ font-size: 22px; font-weight:900; white-space: nowrap; color: #FF0000; font-family: "Trebuchet MS", sans-serif; letter-spacing: 0.5px; }
+
+        /* MAIN CONTAINER */
+        .main-address { padding: 20px 15px; max-width: 500px; margin: 0 auto; }
+
+        /* ADDRESS CARD */
+        .address-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .address-card:active { transform: scale(0.98); }
+
+        .addr-tag {
+            display: inline-block;
+            background: #FFF5F0;
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border: 1px solid rgba(231, 111, 81, 0.2);
+        }
+
+        .addr-full {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--primary-dark);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .addr-phone {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        .addr-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .addr-btn {
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .addr-btn:active { transform: scale(0.95); }
+
+        .addr-btn-edit {
+            background: #FFF5F0;
+            color: var(--accent-color);
+            border: 1px solid rgba(231, 111, 81, 0.2);
+        }
+
+        .addr-btn-delete {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+
+        .addr-btn-delete:active { background: #ffcdd2; }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .empty-icon { font-size: 80px; opacity: 0.6; margin-bottom: 20px; }
+        .empty-state h3 { font-size: 22px; color: var(--primary-dark); margin-bottom: 10px; }
+        .empty-state p { color: var(--text-muted); font-size: 15px; margin-bottom: 25px; }
+
+        /* ADD ADDRESS BUTTON */
+        .add-addr-btn {
+            width: 100%;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 18px;
+            font-size: 17px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(231, 111, 81, 0.3);
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .add-addr-btn:active { transform: scale(0.96); }
+
+        /* ADD ADDRESS FORM (Popup) */
+        .form-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(44, 54, 63, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .form-overlay.show { display: flex; opacity: 1; }
+
+        .form-container {
+            background: white;
+            border-radius: 25px;
+            padding: 30px 25px;
+            width: 92%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .form-overlay.show .form-container {
+            transform: translateY(0) scale(1);
+        }
+
+        .form-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid rgba(0,0,0,0.06);
+            border-radius: 15px;
+            font-size: 15px;
+            outline: none;
+            background: #FAFAFA;
+            transition: 0.3s;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--accent-color);
+            background: white;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .form-actions button {
+            flex: 1;
+            padding: 14px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 900;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .form-actions button:active { transform: scale(0.95); }
+
+        .form-submit {
+            background: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(231, 111, 81, 0.3);
+        }
+
+        .form-cancel {
+            background: #f0f0f0;
+            color: var(--text-muted);
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px 0 15px 0; z-index: 100; box-shadow: 0 -5px 25px rgba(0,0,0,0.06); border-top-left-radius: 25px; border-top-right-radius: 25px; }
+        .bottom-nav div { color: var(--text-muted); text-align: center; font-size: 12px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .icon { font-size: 24px; margin-bottom: 3px; font-style: normal; transition: transform 0.2s; }
+        .bottom-nav div:active .icon { transform: scale(0.85); }
+        .icon-wrapper { position: relative; display: inline-block; }
+        .active-nav { color: var(--accent-color) !important; }
+        .cart-badge { position: absolute; top: -5px; right: -8px; background: var(--accent-color); color: white; font-size: 10px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; display: none; align-items: center; justify-content: center; border: 2px solid white; box-sizing: content-box; }
+
+        /* TOP ALERT */
+        .top-alert { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: #4CAF50; color: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center; z-index: 10000; transition: top 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        .top-alert.show { top: 20px; }
+        .top-alert-msg { font-size: 14px; font-weight: bold; flex: 1; }
+        .top-alert-close { cursor: pointer; font-size: 20px; font-weight: bold; margin-left: 15px; padding: 0 5px; }
+
+        /* LOADING SHIMMER */
+        .shimmer { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 12px; }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        .shimmer-card { height: 100px; margin-bottom: 15px; border-radius: 20px; }
+    </style>
+
+    <!-- Firebase SDK (v8 Compatible) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
+</head>
+<body>
+
+<!-- TOP ALERT -->
+<div class="top-alert" id="topAlert">
+    <div class="top-alert-msg" id="topAlertMsg">Notification</div>
+    <span class="top-alert-close" onclick="closeTopAlert()">✕</span>
+</div>
+
+<!-- HEADER -->
+<div class="topbar">
+    <div class="back-arrow" onclick="goBack()">←</div>
+    <div class="top-title">Saved Addresses</div>
+</div>
+
+<!-- MAIN -->
+<div class="main-address">
+    <div id="addressListContainer">
+        <!-- Shimmer Loader -->
+        <div class="shimmer-card shimmer"></div>
+        <div class="shimmer-card shimmer" style="width:95%;"></div>
+        <div class="shimmer-card shimmer" style="width:90%;"></div>
+    </div>
+
+    <button class="add-addr-btn" onclick="openAddAddressForm()">+ Add New Address</button>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+    <div onclick="window.location.replace('index.html')"><div class="icon">🏠</div>Home</div>
+    <div onclick="window.location.replace('menu.html')"><div class="icon">🍔</div>Menu</div>
+    <div onclick="window.location.replace('cart.html')">
+        <div class="icon-wrapper">
+            <div class="icon">🛒</div>
+            <span class="cart-badge" id="cartCount">0</span>
+        </div>
+        <div>Cart</div>
+    </div>
+    <div onclick="showComingSoon()"><div class="icon">🎁</div>Rewards</div>
+</div>
+
+<!-- ADD ADDRESS FORM (Popup) -->
+<div class="form-overlay" id="addressFormOverlay">
+    <div class="form-container">
+        <div class="form-title" id="formTitle">Add New Address</div>
+
+        <div class="form-group">
+            <label>Address Tag</label>
+            <select id="addrTag">
+                <option value="Home">🏠 Home</option>
+                <option value="Office">🏢 Office</option>
+                <option value="Other">📍 Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>House / Flat / Building</label>
+            <input type="text" id="addrHouse" placeholder="e.g. 123, Dreamy Tower">
+        </div>
+
+        <div class="form-group">
+            <label>Street / Area</label>
+            <input type="text" id="addrStreet" placeholder="e.g. MG Road">
+        </div>
+
+        <div class="form-group">
+            <label>City & Pin Code</label>
+            <input type="text" id="addrCityPin" placeholder="e.g. Mumbai - 400001">
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="addrPhone" placeholder="e.g. 9876543210" maxlength="10" inputmode="numeric">
+        </div>
+
+        <div class="form-actions">
+            <button class="form-cancel" onclick="closeAddAddressForm()">Cancel</button>
+            <button class="form-submit" id="submitAddrBtn" onclick="saveAddress()">Save Address</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ==========================================
+// FIREBASE REFERENCE
+// ==========================================
+const db = firebase.database();
+
+// ==========================================
+// GLOBALS
+// ==========================================
+let loggedInEmail = localStorage.getItem("loggedInEmail");
+let userDbKey = loggedInEmail ? loggedInEmail.replace(/\./g, ',') : "";
+let editingAddressKey = null;
+
+// ==========================================
+// DOM READY
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    updateCartBadge();
+    checkLoginAndLoadAddresses();
+});
+
+function goBack() {
+    window.location.replace('index.html');
+}
+
+// ==========================================
+// CHECK LOGIN & LOAD ADDRESSES
+// ==========================================
+function checkLoginAndLoadAddresses() {
+    if (!loggedInEmail) {
+        document.getElementById("addressListContainer").innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">🔒</div>
+                <h3>Login Required</h3>
+                <p>Please login to view and manage your saved addresses.</p>
+                <button class="add-addr-btn" onclick="window.location.replace('index.html')">Go to Login</button>
+            </div>
+        `;
+        return;
+    }
+    loadAddresses();
+}
+
+function loadAddresses() {
+    const container = document.getElementById("addressListContainer");
+    container.innerHTML = `
+        <div class="shimmer-card shimmer"></div>
+        <div class="shimmer-card shimmer" style="width:95%;"></div>
+        <div class="shimmer-card shimmer" style="width:90%;"></div>
+    `;
+
+    db.ref('users/' + userDbKey + '/addresses').once('value')
+    .then((snapshot) => {
+        if (snapshot.exists()) {
+            const addresses = snapshot.val();
+            renderAddresses(addresses);
+        } else {
+            container.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">📍</div>
+                    <h3>No Addresses Saved</h3>
+                    <p>Add your first delivery address to get started.</p>
+                </div>
+            `;
+        }
+    })
+    .catch((error) => {
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">⚠️</div>
+                <h3>Network Error</h3>
+                <p>${error.message}</p>
+                <button class="add-addr-btn" onclick="loadAddresses()">🔄 Retry</button>
+            </div>
+        `;
+    });
+}
+
+function renderAddresses(addresses) {
+    const container = document.getElementById("addressListContainer");
+    container.innerHTML = "";
+
+    const keys = Object.keys(addresses);
+    keys.forEach((key) => {
+        const addr = addresses[key];
+        const card = document.createElement("div");
+        card.classList.add("address-card");
+
+        card.innerHTML = `
+            <div class="addr-tag">${addr.tag || 'Home'}</div>
+            <div class="addr-full">${addr.house || ''}, ${addr.street || ''}, ${addr.cityPin || ''}</div>
+            <div class="addr-phone">📞 ${addr.phone || ''}</div>
+            <div class="addr-actions">
+                <button class="addr-btn addr-btn-edit" onclick="editAddress('${key}')">✏️ Edit</button>
+                <button class="addr-btn addr-btn-delete" onclick="deleteAddress('${key}')">🗑️ Delete</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// ==========================================
+// ADD / EDIT ADDRESS
+// ==========================================
+function openAddAddressForm() {
+    if (!loggedInEmail) {
+        showTopAlert("Please login first!", "error");
+        return;
+    }
+    editingAddressKey = null;
+    document.getElementById("formTitle").innerText = "Add New Address";
+    document.getElementById("submitAddrBtn").innerText = "Save Address";
+    document.getElementById("addrTag").value = "Home";
+    document.getElementById("addrHouse").value = "";
+    document.getElementById("addrStreet").value = "";
+    document.getElementById("addrCityPin").value = "";
+    document.getElementById("addrPhone").value = "";
+    showForm();
+}
+
+function editAddress(key) {
+    editingAddressKey = key;
+    document.getElementById("formTitle").innerText = "Edit Address";
+    document.getElementById("submitAddrBtn").innerText = "Update Address";
+
+    db.ref('users/' + userDbKey + '/addresses/' + key).once('value')
+    .then((snapshot) => {
+        if (snapshot.exists()) {
+            const addr = snapshot.val();
+            document.getElementById("addrTag").value = addr.tag || "Home";
+            document.getElementById("addrHouse").value = addr.house || "";
+            document.getElementById("addrStreet").value = addr.street || "";
+            document.getElementById("addrCityPin").value = addr.cityPin || "";
+            document.getElementById("addrPhone").value = addr.phone || "";
+            showForm();
+        }
+    });
+}
+
+function saveAddress() {
+    const tag = document.getElementById("addrTag").value;
+    const house = document.getElementById("addrHouse").value.trim();
+    const street = document.getElementById("addrStreet").value.trim();
+    const cityPin = document.getElementById("addrCityPin").value.trim();
+    const phone = document.getElementById("addrPhone").value.trim();
+
+    if (!house || !street || !cityPin || !phone) {
+        showTopAlert("Please fill all fields!", "error");
+        return;
+    }
+
+    if (phone.length !== 10 || !/^\d{10}$/.test(phone)) {
+        showTopAlert("Please enter a valid 10-digit phone number!", "error");
+        return;
+    }
+
+    const addressData = { tag, house, street, cityPin, phone };
+    const btn = document.getElementById("submitAddrBtn");
+    btn.innerText = "Saving...";
+    btn.disabled = true;
+
+    let ref = db.ref('users/' + userDbKey + '/addresses');
+    if (editingAddressKey) {
+        ref = ref.child(editingAddressKey);
+    } else {
+        ref = ref.push();
+    }
+
+    ref.set(addressData)
+    .then(() => {
+        showTopAlert(editingAddressKey ? "✅ Address Updated!" : "✅ Address Added!", "success");
+        closeAddAddressForm();
+        loadAddresses();
+    })
+    .catch((error) => {
+        showTopAlert("Error: " + error.message, "error");
+    })
+    .finally(() => {
+        btn.innerText = editingAddressKey ? "Update Address" : "Save Address";
+        btn.disabled = false;
+    });
+}
+
+function deleteAddress(key) {
+    if (!confirm("Are you sure you want to delete this address?")) return;
+
+    db.ref('users/' + userDbKey + '/addresses/' + key).remove()
+    .then(() => {
+        showTopAlert("🗑️ Address Deleted!", "success");
+        loadAddresses();
+    })
+    .catch((error) => {
+        showTopAlert("Error: " + error.message, "error");
+    });
+}
+
+// ==========================================
+// FORM OVERLAY
+// ==========================================
+function showForm() {
+    const overlay = document.getElementById("addressFormOverlay");
+    overlay.style.display = "flex";
+    setTimeout(() => { overlay.classList.add("show"); }, 10);
+}
+
+function closeAddAddressForm() {
+    const overlay = document.getElementById("addressFormOverlay");
+    overlay.classList.remove("show");
+    setTimeout(() => { overlay.style.display = "none"; }, 300);
+    editingAddressKey = null;
+}
+
+// ==========================================
+// CART BADGE
+// ==========================================
+function updateCartBadge() {
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+    let totalItems = 0;
+    for (let i = 0; i < cart.length; i++) { totalItems += cart[i].qty || 1; }
+    const badge = document.getElementById("cartCount");
+    badge.innerText = totalItems;
+    badge.style.display = totalItems > 0 ? "flex" : "none";
+}
+
+// ==========================================
+// TOP ALERT
+// ==========================================
+function showTopAlert(msg, type) {
+    const box = document.getElementById("topAlert");
+    document.getElementById("topAlertMsg").innerText = msg;
+    box.style.background = type === 'error' ? "#e53300" : "#4CAF50";
+    box.classList.add("show");
+    setTimeout(() => closeTopAlert(), 3500);
+}
+function closeTopAlert() {
+    document.getElementById("topAlert").classList.remove("show");
+}
+
+function showComingSoon() {
+    alert("🎁 Rewards feature coming soon! Stay tuned.");
+}
+</script>
+</body>
+</html>

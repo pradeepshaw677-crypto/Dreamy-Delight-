@@ -1,9 +1,11 @@
 
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<meta name="google-site-verification" content="_jHpaOx4b9myqd_cr8WEqHMwaD9xAn1Hcj5Z5Z0HdnQ">
+<meta name="google-site-verification" content="_jHpaOx4b9myqd_cr8WEqHMwaD9xAn1Hcj5Z5Z0HdnQ" />
 
 <link rel="icon" type="image/jpeg" href="logo.jpg">
 <title>Dreamy Delight</title>
@@ -116,7 +118,7 @@
     .email-input { border: none; background: transparent; outline: none; font-size: 15px; color: var(--primary-dark); width: 100%; font-weight: bold; }
     .proceed-btn { width: 100%; background: #d9dada; color: white; font-size: 18px; font-weight: bold; border: none; padding: 16px; border-radius: 15px; cursor: not-allowed; transition: 0.3s ease; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
     
-    login-disclaimer { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 25px; line-height: 1.5; padding: 0 5px; margin-bottom: 70px; }
+    .login-disclaimer { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 25px; line-height: 1.5; padding: 0 5px; margin-bottom: 70px; }
 
     /* NEW BUTTON FOR LOGGED OUT USER IN CORNER */
     .logged-out-terms-btn { position: absolute; bottom: 20px; width: calc(100% - 60px); display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; background: white; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 10px rgba(0,0,0,0.03); color: var(--primary-dark); font-weight: bold; font-size: 14px; cursor: pointer; }
@@ -135,10 +137,6 @@
     }
     
     .user-details h2 { color: var(--primary-dark); font-size: 20px; font-weight: 900; display: flex; align-items: center; gap: 8px; }
-    .edit-icon { font-size: 16px; cursor: pointer; color: var(--accent-color); transition: transform 0.2s; background: #FFF5F0; padding: 5px; border-radius: 50%; display: flex; }
-    .edit-icon:active { transform: scale(0.8); }
-    .user-details p
-    { color: var(--primary-dark); font-size: 20px; font-weight: 900; display: flex; align-items: center; gap: 8px; }
     .edit-icon { font-size: 16px; cursor: pointer; color: var(--accent-color); transition: transform 0.2s; background: #FFF5F0; padding: 5px; border-radius: 50%; display: flex; }
     .edit-icon:active { transform: scale(0.8); }
     .user-details p { color: var(--text-muted); font-size: 13px; font-weight: bold; margin-top: 4px; }
@@ -163,16 +161,7 @@
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="firebase-config.js"></script><style>
-        * {
-            -webkit-tap-highlight-color: transparent !important;
-        }
-        /* Optional: Agar user text select na kar paye (native feel ke liye) */
-        body {
-            -webkit-user-select: none;
-            user-select: none;
-        }
-    </style>
+<script src="firebase-config.js"></script>
 
 </head>
 <body>
@@ -190,22 +179,22 @@
 </div>
 
 <div class="slider">
-    <div class="slides" id="userSlidesContainer" style="transform: translateX(-300%);"><div class="slide"><img src="https://iili.io/CJ9bCv9.jpg"></div><div class="slide"><img src="https://iili.io/CJ9mqMv.jpg"></div><div class="slide"><img src="https://iili.io/CJHf3CP.jpg"></div><div class="slide"><img src="https://iili.io/CJHKd1n.jpg"></div></div>
+    <div class="slides" id="userSlidesContainer"></div>
     <button class="prev" onclick="prevSlide()">❮</button>
     <button class="next" onclick="nextSlide()">❯</button>
-    <div class="dots" id="userDotsContainer"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+    <div class="dots" id="userDotsContainer"></div>
 </div>
 
 <div class="title">Our Menu</div>
 
-<div class="menu-grid" id="userCategoriesContainer"><div class="card"><img src="https://iili.io/CJxA2qv.png"><h3>PIZZA</h3></div><div class="card"><img src="https://i0.wp.com/www.chitrasfoodbook.com/wp-content/uploads/2024/07/veg-burger-mcdonalds-style-main.jpg?ssl=1"><h3>BURGER</h3></div><div class="card"><img src="https://cdn7.kiwilimon.com/recetaimagen/30704/640x640/34299.jpg.webp"><h3>SANDWICH</h3></div><div class="card"><img src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Instant-Pot-Mumbai-Pav-Bhaji-Recipe.jpg"><h3>PAV BHAJI</h3></div><div class="card"><img src="https://shop.sresthproducts.com/wp-content/uploads/2025/01/cholw-bhature-678x678.jpg"><h3>CHOLE BHATURE</h3></div><div class="card"><img src="https://kirbiecravings.com/wp-content/uploads/2018/02/garlic-noodles-61-728x707.jpg"><h3>NOODLES</h3></div><div class="card"><img src="https://theovenchef.com/wp-content/uploads/2023/12/HAR07488-scaled-e1702277987836.jpg"><h3>ROLLS</h3></div><div class="card"><img src="https://www.nehascookbook.com/wp-content/uploads/2021/01/Gravy-manchurian-WS-500x500.jpg"><h3>MANCHURIAN</h3></div><div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNeT8v9_l5s8Vb8-Ki7E-utdnLA5X_X-799OALOYhDm19xmHuZGKVf4Ek&amp;s=10"><h3>CHILLI</h3></div><div class="card"><img src="https://www.kuchpakrahahai.in/wp-content/uploads/2026/02/veg-momos-recipe-768x960.jpg"><h3>MOMOS</h3></div><div class="card"><img src="https://www.dadcooksdinner.com/wp-content/uploads/2023/09/Instant-Pot-Chicken-Soup-with-Rice-1280x-1030337.jpg"><h3>SOUP</h3></div><div class="card"><img src="https://myfoodstory.com/wp-content/uploads/2025/08/Dosa-Recipe-2-500x500.jpg"><h3>DOSA</h3></div><div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_pYB-iHFurS1ZiDRVWQPPeaGIL7tKPeKFTuY27FTK_8D8DE3B2QzKtlo&amp;s=10htfZlZjbWFyQ2pEYjJPbmVzUDJzQ3Y4UUVfNzYSEGUtb0dDRlJpcUw4a2Y4Nk0YADABSgQIARACGAcgpdOe8whKCBACGAEgAigB"><h3>SOUTH INDIAN</h3></div><div class="card"><img src="https://www.roopmahalrice.com/wp-content/uploads/2023/01/how-to-cook-rice.jpg"><h3>RICE</h3></div><div class="card"><img src="https://healthynibblesandbits.com/wp-content/uploads/2014/02/mint-chocolate-snack-bites.jpg"><h3>SNACK BITES</h3></div><div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHPR3BYYznq9vrWQjnxTmqHCmQ71idyg-0r8z3DYOAHxBpKxdTGbnex4k&amp;s=10"><h3>MOCKTAILS</h3></div><div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBCcPw0f9gTordb4EQYurqJV4ShXyIIKrpa1s_m6a8IQ&amp;s=10"><h3>ICE CREAM</h3></div><div class="card"><img src="https://www.bbassets.com/media/uploads/p/xl/40233401_1-fresho-fresh-hot-coffee.jpg"><h3>COFFEE</h3></div><div class="card"><img src="https://www.slimmingworld.co.uk/wp-content/uploads/2024/05/summer-spritzes-sw-600px.jpg"><h3>DRINKS</h3></div><div class="card"><img src="https://www.cookwithkushi.com/wp-content/uploads/2016/07/best_white_sauce_pasta_bechamel_sauce-768x768.jpg"><h3>PASTA</h3></div></div>
+<div class="menu-grid" id="userCategoriesContainer"></div>
 
 <div class="bottom-nav">
     <div class="active-nav"><div class="icon">🏠</div>Home</div>
     <div onclick="window.location.href='menu.html'"><div class="icon">🍔</div>Menu</div>
     <div onclick="window.location.href='cart.html'">
         <div class="icon-wrapper">
-            <div class="icon">🛒</div><span class="cart-badge" id="cartCount" style="display: none;">0</span>
+            <div class="icon">🛒</div><span class="cart-badge" id="cartCount">0</span>
         </div><div>Cart</div>
     </div>
     <div onclick="showComingSoonModal()"><div class="icon">🎁</div>Rewards</div>
@@ -218,7 +207,7 @@
         <button class="back-btn" onclick="closeSideMenu()">← Back</button>
     </div>
     
-    <div class="login-container" id="loginFormContainer" style="display: flex;">
+    <div class="login-container" id="loginFormContainer">
         <div class="splash-img"></div>
         <h1 class="login-title">Welcome Back</h1>
         <div style="width: 100%;">
@@ -228,12 +217,12 @@
             <div class="input-group">
                 <input type="password" id="passBox" class="email-input" placeholder="Enter password (Min 8 chars)">
             </div>
-            <button id="proceedBtn" class="proceed-btn" disabled="" onclick="handleDatabaseAuth()" style="background: rgb(217, 218, 218); cursor: not-allowed;">Proceed</button>
+            <button id="proceedBtn" class="proceed-btn" disabled onclick="handleDatabaseAuth()">Proceed</button>
         </div>
         <p class="login-disclaimer">Note: We currently do not have a password reset feature. If you forget your password, please contact customer care or create a new ID.</p>
     </div>
 
-    <div class="profile-container" id="profileContainer" style="display: none;">
+    <div class="profile-container" id="profileContainer">
         <div class="profile-header-info">
             <div class="avatar"></div>
             <div class="user-details">
@@ -548,6 +537,5 @@ function closeComingSoonModal() {
     setTimeout(() => { modal.style.display = "none"; }, 300);
 }
 </script>
-
-
-</body></html>
+</body>
+</html>
