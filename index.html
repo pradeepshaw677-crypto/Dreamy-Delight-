@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,40 +11,22 @@
 <style>
     /* SOFT & PREMIUM COLOR PALETTE */
     :root {
-        --bg-color: #FCF9F2; /* Warm Cream */
-        --primary-dark: #2C363F; /* Charcoal Slate */
-        --accent-color: #E76F51; /* Soft Terracotta / Peach */
-        --accent-light: #F4A261; /* Sandy Orange */
+        --bg-color: #FCF9F2;
+        --primary-dark: #2C363F;
+        --accent-color: #E76F51;
+        --accent-light: #F4A261;
         --text-muted: #888888;
         --card-bg: #FFFFFF;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
     body { background: var(--bg-color); padding-bottom: 90px; overflow-x: hidden; }
-    
-    /* CURVED HEADER - COMPLETELY LIGHT YELLOW NOW */
+
     .header { background: #FFE66D; padding: 15px 15px 25px 15px; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
     .top-row { display: flex; align-items: center; position: relative; height: 35px; }
-    
-    /* Menu Icon color changed to dark so it's visible on yellow background */
     .menu-icon { font-size: 30px; cursor: pointer; z-index: 2; color: var(--primary-dark); }
-    
-    /* UPDATED BRAND TITLE: HIGHLIGHT RED COLOR */
-    .brand-title { 
-        position: absolute; 
-        width: 100%; 
-        left: 0; 
-        text-align: center; 
-        color: #FF0000; /* Highlighted Red */
-        font-size: 26px; 
-        font-weight: 900; 
-        letter-spacing: 1px; 
-        font-family: "Trebuchet MS", sans-serif; 
-        z-index: 1; 
-        pointer-events: none; 
-    }
-    
-    /* UPDATED SLIDER: MOVED DOWN TO FIX CLASH WITH HEADER */
+    .brand-title { position: absolute; width: 100%; left: 0; text-align: center; color: #FF0000; font-size: 26px; font-weight: 900; letter-spacing: 1px; font-family: "Trebuchet MS", sans-serif; z-index: 1; pointer-events: none; }
+
     .slider { width: 92%; height: 200px; position: relative; overflow: hidden; margin: 20px auto 20px auto; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 5; background: white; }
     .slides { display: flex; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
     .slide { min-width: 100%; height: 100%; }
@@ -55,45 +36,15 @@
     .dots { position: absolute; bottom: 12px; width: 100%; display: flex; justify-content: center; gap: 6px; }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: 0.3s; }
     .dot.active { background: white; width: 24px; border-radius: 10px; }
-    
-    /* MENU GRID (SHADOW FIX EKDUM PROPER) */
+
     .title { font-size: 26px; color: var(--primary-dark); padding: 10px 20px 20px 20px; font-weight: 900; letter-spacing: 0.5px; }
     .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 20px; margin-bottom: 35px; }
-    
-    .card { 
-        background: transparent; 
-        padding: 12px 10px; 
-        text-align: center; 
-        border: 2px solid var(--accent-light); /* Orange Theme color outline */
-        border-radius: 20px; 
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); /* DARKER SHADOW ADDED FOR THE OUTLINE BOX */
-        cursor: pointer; 
-        transition: transform 0.2s, border-color 0.3s, box-shadow 0.2s; 
-    }
-    .card:active { 
-        transform: scale(0.95); 
-        border-color: var(--accent-color); 
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); 
-    }
-    
-    .card img { 
-        width: 100%; 
-        height: 150px; 
-        border-radius: 15px; 
-        object-fit: contain; 
-        background: transparent; 
-        margin-bottom: 10px; 
-        filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.35)); /* PROPER DARK 3D SHADOW FOR PICTURE */
-    }
-    
-    .card h3 { 
-        margin-top: 5px; 
-        color: var(--primary-dark); 
-        font-size: 16px; 
-        font-weight: 900; 
-    }
-    
-    /* FLOATING BOTTOM NAV */
+
+    .card { background: transparent; padding: 12px 10px; text-align: center; border: 2px solid var(--accent-light); border-radius: 20px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); cursor: pointer; transition: transform 0.2s, border-color 0.3s, box-shadow 0.2s; }
+    .card:active { transform: scale(0.95); border-color: var(--accent-color); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); }
+    .card img { width: 100%; height: 150px; border-radius: 15px; object-fit: contain; background: transparent; margin-bottom: 10px; filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.35)); }
+    .card h3 { margin-top: 5px; color: var(--primary-dark); font-size: 16px; font-weight: 900; }
+
     .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px 0 15px 0; z-index: 100; box-shadow: 0 -5px 25px rgba(0,0,0,0.06); border-top-left-radius: 25px; border-top-right-radius: 25px; }
     .bottom-nav div { color: var(--text-muted); text-align: center; font-size: 12px; cursor: pointer; font-weight: bold; transition: 0.3s; }
     .icon { font-size: 24px; margin-bottom: 3px; font-style: normal; transition: transform 0.2s; }
@@ -101,58 +52,41 @@
     .icon-wrapper { position: relative; display: inline-block; }
     .active-nav { color: var(--accent-color) !important; }
     .cart-badge { position: absolute; top: -5px; right: -8px; background: var(--accent-color); color: white; font-size: 10px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; display: none; align-items: center; justify-content: center; border: 2px solid white; box-sizing: content-box; }
-    
-    /* SIDE MENU UPDATES */
+
     .side-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(44, 54, 63, 0.7); z-index: 998; opacity: 0; pointer-events: none; transition: 0.3s ease-in-out; backdrop-filter: blur(3px); }
     .side-menu-overlay.active { opacity: 1; pointer-events: auto; }
-    
     .side-menu { position: fixed; top: 0; left: -100%; width: 80%; max-width: 320px; height: 100vh; background: var(--bg-color); z-index: 999; transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1); display: flex; flex-direction: column; overflow-y: auto; box-shadow: 5px 0 25px rgba(0,0,0,0.15); }
     .side-menu.active { left: 0; }
     .side-menu-top { display: flex; justify-content: space-between; align-items: center; padding: 25px 20px 10px 20px; }
     .back-btn { font-size: 26px; color: var(--primary-dark); cursor: pointer; background: none; border: none; }
-    
+
     .login-container { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 0 30px; }
     .splash-img { width: 180px; height: 180px; background: url('https://cdn-icons-png.flaticon.com/512/3135/3135715.png') no-repeat center center; background-size: contain; margin-bottom: 20px; opacity: 0.9; }
     .login-title { font-size: 28px; color: var(--primary-dark); font-weight: 900; margin-bottom: 30px; letter-spacing: 1px; }
     .input-group { display: flex; align-items: center; width: 100%; background: white; padding: 15px 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); }
     .email-input { border: none; background: transparent; outline: none; font-size: 15px; color: var(--primary-dark); width: 100%; font-weight: bold; }
     .proceed-btn { width: 100%; background: #d9dada; color: white; font-size: 18px; font-weight: bold; border: none; padding: 16px; border-radius: 15px; cursor: not-allowed; transition: 0.3s ease; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-    
     .login-disclaimer { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 25px; line-height: 1.5; padding: 0 5px; margin-bottom: 70px; }
-
-    /* NEW BUTTON FOR LOGGED OUT USER IN CORNER */
-    .logged-out-terms-btn { position: absolute; bottom: 20px; width: calc(100% - 60px); display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; background: white; border-radius: 15px; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 10px rgba(0,0,0,0.03); color: var(--primary-dark); font-weight: bold; font-size: 14px; cursor: pointer; }
-    .logged-out-terms-btn:active { background: #FCF9F2; }
 
     .profile-container { display: none; width: 100%; padding: 0 20px; padding-bottom: 50px; }
     .profile-header-info { display: flex; align-items: center; gap: 15px; margin-bottom: 35px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.02); }
-    
-    /* UPDATED LOGO PATH FOR PROFILE AVATAR */
-    .avatar { 
-        width: 60px; height: 60px; 
-        background: #FFF9F5 url('logo.jpg') no-repeat center center; 
-        background-size: contain;
-        border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 2px solid var(--accent-light); 
-    }
-    
+    .avatar { width: 60px; height: 60px; background: #FFF9F5 url('logo.jpg') no-repeat center center; background-size: contain; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 2px solid var(--accent-light); }
     .user-details h2 { color: var(--primary-dark); font-size: 20px; font-weight: 900; display: flex; align-items: center; gap: 8px; }
     .edit-icon { font-size: 16px; cursor: pointer; color: var(--accent-color); transition: transform 0.2s; background: #FFF5F0; padding: 5px; border-radius: 50%; display: flex; }
     .edit-icon:active { transform: scale(0.8); }
     .user-details p { color: var(--text-muted); font-size: 13px; font-weight: bold; margin-top: 4px; }
-    
+
     .profile-menu-list { display: flex; flex-direction: column; background: white; border-radius: 20px; padding: 10px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); }
     .profile-menu-item { display: flex; align-items: center; gap: 15px; padding: 16px 20px; color: var(--primary-dark); font-size: 15px; font-weight: bold; cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.03); transition: background 0.2s; }
     .profile-menu-item:active { background: #FCF9F2; }
     .profile-menu-item:last-child { border-bottom: none; }
     .menu-icon-img { font-size: 20px; width: 25px; text-align: center; }
-    
-    /* CUSTOM ALERTS */
+
     .top-alert { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: #4CAF50; color: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center; z-index: 10000; transition: top 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
     .top-alert.show { top: 20px; }
     .top-alert-msg { font-size: 14px; font-weight: bold; flex: 1; }
     .top-alert-close { cursor: pointer; font-size: 20px; font-weight: bold; margin-left: 15px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; }
-    
+
     .custom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(44, 54, 63, 0.7); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(3px); opacity: 0; transition: opacity 0.3s ease; }
     .custom-modal.show { display: flex; opacity: 1; }
     .modal-content { background: white; padding: 30px 20px; border-radius: 25px; text-align: center; width: 80%; max-width: 320px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transform: translateY(20px) scale(0.95); transition: transform 0.3s ease; }
@@ -206,7 +140,7 @@
     <div class="side-menu-top">
         <button class="back-btn" onclick="closeSideMenu()">← Back</button>
     </div>
-    
+
     <div class="login-container" id="loginFormContainer">
         <div class="splash-img"></div>
         <h1 class="login-title">Welcome Back</h1>
@@ -288,10 +222,10 @@ function getSecureCookie(name) {
 
 document.addEventListener("DOMContentLoaded", () => {
     updateCartBadge(); 
-    
+
     const savedEmail = localStorage.getItem("loggedInEmail") || getSecureCookie("loggedInEmail");
     const savedName = localStorage.getItem("loggedInName") || getSecureCookie("loggedInName");
-    
+
     if(savedEmail) {
         localStorage.setItem("loggedInEmail", savedEmail);
         if(savedName) localStorage.setItem("loggedInName", savedName);
@@ -302,10 +236,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const localLayout = localStorage.getItem("userCachedHomeLayout");
     const localCats = localStorage.getItem("userCachedMenuCats");
-    
+
     if(localLayout) parseAndBuildLiveBanners(JSON.parse(localLayout));
     else buildStaticBannersFallback();
-    
+
     if(localCats) buildUserCategoriesGrid(JSON.parse(localCats));
     else buildUserCategoriesGrid(fallbackCategories);
 
@@ -391,7 +325,7 @@ function buildDotsNavigator(count) {
 function buildUserCategoriesGrid(categoriesList) {
     const grid = document.getElementById("userCategoriesContainer");
     grid.innerHTML = "";
-    
+
     categoriesList.forEach(cat => {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -439,10 +373,10 @@ function handleDatabaseAuth() {
     const email = document.getElementById("emailBox").value.trim().toLowerCase();
     const pass = document.getElementById("passBox").value;
     const btn = document.getElementById("proceedBtn");
-    
+
     btn.innerText = "Processing..."; 
     btn.disabled = true;
-    
+
     const dbKey = email.replace(/\./g, ',');
     const encryptedPass = btoa(pass + "_dreamySec"); 
 
@@ -485,7 +419,7 @@ function logoutUser() {
     localStorage.removeItem("loggedInName");
     setSecureCookie("loggedInEmail", "", -1);
     setSecureCookie("loggedInName", "", -1);
-    
+
     updateUIForLoggedOutUser(); 
     showTopAlert("Logged Out Successfully", "success"); 
     closeSideMenu();
