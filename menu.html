@@ -12,6 +12,7 @@
     <script src="firebase-config.js"></script>
 
     <style>
+        /* (same as before, unchanged) */
         :root {
             --bg-color: #FCF9F2;
             --primary-dark: #2C1E16;
@@ -545,77 +546,44 @@
             document.getElementById('searchInput').addEventListener('input', filterFoods);
         });
 
-        // ---- Load categories and items from Firebase ----
+        // ============================================================
+        // 🔥 LOAD CATEGORIES AND ITEMS — SYNC WITH ADMIN PANEL
+        // ============================================================
         function loadCategoriesAndItems() {
-            db.ref('menu_categories').once('value').then(snapshot => {
+            // Load categories from admin panel path: menu_categories
+            db.ref('menu_categories').on('value', snapshot => {
                 if (snapshot.exists()) {
                     const val = snapshot.val();
                     allCategories = Array.isArray(val) ? val : Object.values(val);
                 } else {
-                    allCategories = [
-                        { id: 'pizza', name: 'Pizza', img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
-                        { id: 'burger', name: 'Burger', img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png' },
-                        { id: 'pasta', name: 'Pasta', img: 'https://cdn-icons-png.flaticon.com/512/2926/2926935.png' },
-                        { id: 'sides', name: 'Sides', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710281.png' },
-                        { id: 'beverages', name: 'Beverages', img: 'https://cdn-icons-png.flaticon.com/512/3093/3093357.png' },
-                        { id: 'desserts', name: 'Desserts', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710302.png' }
-                    ];
+                    // Fallback
+                    allCategories = getFallbackCategories();
                 }
                 renderCategories();
-                loadItems();
-            }).catch(err => {
-                console.warn('Firebase categories fallback:', err);
-                allCategories = [
-                    { id: 'pizza', name: 'Pizza', img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
-                    { id: 'burger', name: 'Burger', img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png' },
-                    { id: 'pasta', name: 'Pasta', img: 'https://cdn-icons-png.flaticon.com/512/2926/2926935.png' },
-                    { id: 'sides', name: 'Sides', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710281.png' },
-                    { id: 'beverages', name: 'Beverages', img: 'https://cdn-icons-png.flaticon.com/512/3093/3093357.png' },
-                    { id: 'desserts', name: 'Desserts', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710302.png' }
-                ];
-                renderCategories();
-                loadItems();
             });
-        }
 
-        function loadItems() {
-            db.ref('menu_items').once('value').then(snapshot => {
+            // Load products from admin panel path: menu_config
+            db.ref('menu_config').on('value', snapshot => {
                 if (snapshot.exists()) {
                     const val = snapshot.val();
                     allItems = Array.isArray(val) ? val : Object.values(val);
                 } else {
-                    // Fallback items with discount example
-                    allItems = [
-                        { name: 'Margherita Pizza', price: 299, image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop', category: 'pizza', description: 'Classic cheese & tomato' },
-                        { name: 'Pepperoni Pizza', price: 399, image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop', category: 'pizza', description: 'Spicy pepperoni' },
-                        { name: 'Classic Burger', price: 249, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop', category: 'burger', description: 'Beef patty with cheese' },
-                        { name: 'Chicken Burger', price: 279, image: 'https://images.unsplash.com/photo-1553979459-d2229ba743d6?w=400&h=300&fit=crop', category: 'burger', description: 'Grilled chicken' },
-                        { name: 'White Sauce Pasta', price: 249, image: 'https://images.unsplash.com/photo-1645112411342-4665a10b1e3f?w=400&h=300&fit=crop', category: 'pasta', description: 'Creamy Alfredo' },
-                        { name: 'Red Sauce Pasta', price: 229, image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop', category: 'pasta', description: 'Tangy tomato' },
-                        { name: 'French Fries', price: 99, image: 'https://images.unsplash.com/photo-1630384060421-cb8b8d9a4f8a?w=400&h=300&fit=crop', category: 'sides', description: 'Crispy golden fries' },
-                        { name: 'Garlic Bread', price: 79, image: 'https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=400&h=300&fit=crop', category: 'sides', description: 'Buttered garlic' }
-                    ];
-                }
-                // Ensure each item has a category
-                allItems = allItems.filter(item => item.category);
-                if (allItems.length === 0) {
-                    allItems = fallbackItems;
+                    allItems = [];
                 }
                 renderFoods();
-            }).catch(err => {
-                console.warn('Firebase items fallback:', err);
-                allItems = fallbackItems;
-                renderFoods();
+                console.log('✅ Products loaded from menu_config:', allItems.length);
             });
         }
 
-        // ---- Fallback items ----
-        const fallbackItems = [
-            { name: 'Margherita Pizza', price: 299, image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop', category: 'pizza', description: 'Classic cheese & tomato' },
-            { name: 'Pepperoni Pizza', price: 399, image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop', category: 'pizza', description: 'Spicy pepperoni' },
-            { name: 'Classic Burger', price: 249, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop', category: 'burger', description: 'Beef patty with cheese' },
-            { name: 'Chicken Burger', price: 279, image: 'https://images.unsplash.com/photo-1553979459-d2229ba743d6?w=400&h=300&fit=crop', category: 'burger', description: 'Grilled chicken' }
-        ];
+        function getFallbackCategories() {
+            return [
+                { id: 'pizza', name: 'Pizza', img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
+                { id: 'burger', name: 'Burger', img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png' },
+                { id: 'pasta', name: 'Pasta', img: 'https://cdn-icons-png.flaticon.com/512/2926/2926935.png' },
+                { id: 'sides', name: 'Sides', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710281.png' },
+                { id: 'desserts', name: 'Desserts', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710302.png' }
+            ];
+        }
 
         // ---- Render Categories ----
         function renderCategories() {
@@ -633,7 +601,8 @@
                 const box = document.createElement('div');
                 box.className = 'cat-box';
                 box.dataset.cat = cat.id;
-                box.innerHTML = `<img src="${cat.img}"><p>${cat.name}</p>`;
+                const imgSrc = cat.img || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+                box.innerHTML = `<img src="${imgSrc}"><p>${cat.name}</p>`;
                 box.onclick = () => { selectCategory(cat.id, box); };
                 sidebar.appendChild(box);
             });
@@ -651,13 +620,19 @@
         function renderFoods() {
             const list = document.getElementById('foodList');
             let filtered = allItems;
+
+            // Filter by category
             if (currentCategory !== 'all') {
                 filtered = filtered.filter(item => item.category === currentCategory);
             }
+
             // Apply search filter
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             if (searchTerm) {
-                filtered = filtered.filter(item => item.name.toLowerCase().includes(searchTerm));
+                filtered = filtered.filter(item => 
+                    (item.title || item.name || '').toLowerCase().includes(searchTerm) ||
+                    (item.desc || '').toLowerCase().includes(searchTerm)
+                );
             }
 
             if (filtered.length === 0) {
@@ -667,33 +642,26 @@
 
             let html = '';
             filtered.forEach((item, index) => {
+                const title = item.title || item.name || 'Unnamed';
                 const price = item.price || 0;
-                const img = item.image || 'https://via.placeholder.com/110';
-                const desc = item.description || '';
+                const img = item.img || 'https://via.placeholder.com/110';
+                const desc = item.desc || '';
                 const category = item.category || '';
 
                 // ---- DISCOUNT LOGIC ----
-                let discountActive = item.discount && item.discount.active === true;
-                let originalPrice = price;
-                let discountedPrice = price;
-                let discountPercent = 0;
-
-                if (discountActive) {
-                    originalPrice = item.discount.originalPrice || price;
-                    discountPercent = item.discount.percentage || 0;
-                    discountedPrice = originalPrice - (originalPrice * discountPercent / 100);
-                    // Round to 2 decimal places
-                    discountedPrice = Math.round(discountedPrice);
-                }
+                const discount = item.discount || 0;
+                const originalPrice = item.originalPrice || price;
+                const discountedPrice = discount > 0 ? Math.round(originalPrice * (1 - discount/100)) : price;
+                const hasDiscount = discount > 0 && discount < 100;
 
                 // ---- PRICE HTML ----
                 let priceHtml = '';
-                if (discountActive && discountPercent > 0) {
+                if (hasDiscount && originalPrice > discountedPrice) {
                     priceHtml = `
                         <div class="price-container">
                             <span class="price-original">₹${originalPrice}</span>
                             <span class="price-discounted">₹${discountedPrice}</span>
-                            <span class="discount-percent-tag">${discountPercent}% OFF</span>
+                            <span class="discount-percent-tag">${discount}% OFF</span>
                         </div>
                     `;
                 } else {
@@ -702,22 +670,22 @@
 
                 // ---- DISCOUNT BADGE ON IMAGE ----
                 let discountBadgeHtml = '';
-                if (discountActive && discountPercent > 0) {
-                    discountBadgeHtml = `<div class="discount-badge">${discountPercent}%<small>OFF</small></div>`;
+                if (hasDiscount) {
+                    discountBadgeHtml = `<div class="discount-badge">${discount}%<small>OFF</small></div>`;
                 }
 
                 html += `
                     <div class="food-card" style="animation-delay: ${index * 0.05}s;">
                         <div class="food-img-container">
-                            <img src="${img}" class="food-img" alt="${item.name}" onclick="openImagePreview('${img}')" onerror="this.src='https://via.placeholder.com/110'">
+                            <img src="${img}" class="food-img" alt="${title}" onclick="openImagePreview('${img}')" onerror="this.src='https://via.placeholder.com/110'">
                             ${discountBadgeHtml}
                         </div>
                         <div class="food-content">
-                            <div class="food-title">${item.name}</div>
-                            <div class="food-desc">${desc}</div>
+                            <div class="food-title">${title}</div>
+                            ${desc ? `<div class="food-desc">${desc}</div>` : ''}
                             <div class="food-bottom">
                                 ${priceHtml}
-                                <button class="add-btn" onclick="addToCart('${item.name}', ${discountActive ? discountedPrice : price}, '${img}')">Add</button>
+                                <button class="add-btn" onclick="addToCart('${title}', ${hasDiscount ? discountedPrice : price}, '${img}')">Add</button>
                             </div>
                         </div>
                     </div>
@@ -915,8 +883,7 @@
         // ---- Prevent zoom ----
         document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
 
-        console.log('🍽️ Dreamy Delight – Menu Page with Discount Support Loaded');
+        console.log('🍽️ Dreamy Delight – Menu Page with Admin Panel Sync Loaded');
     </script>
-
 </body>
 </html>
