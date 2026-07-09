@@ -1,480 +1,1097 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <meta name="google-site-verification" content="_jHpaOx4b9myqd_cr8WEqHMwaD9xAn1Hcj5Z5Z0HdnQ" />
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <title>Dreamy Delight</title>
 
-<meta name="google-site-verification" content="_jHpaOx4b9myqd_cr8WEqHMwaD9xAn1Hcj5Z5Z0HdnQ" />
+    <!-- ===== PREMIUM GOLDEN THEME ===== -->
+    <style>
+        /* ---- IMPORT GOOGLE FONTS ---- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
 
-<link rel="icon" type="image/jpeg" href="logo.jpg">
-<title>Dreamy Delight</title>
-<style>
+        :root {
+            --bg-color: #FCF8F2;          /* Cream – Comfort */
+            --primary-dark: #2C1E16;        /* Deep Brown – Stability */
+            --accent-gold: #D4A017;          /* Rich Gold – Luxury */
+            --accent-glow: #F5C842;          /* Bright Gold – Appetite */
+            --accent-soft: #F4E8D0;          /* Soft Beige – Clean */
+            --text-muted: #7A6B5D;            /* Warm grey */
+            --shadow-soft: 0 8px 30px rgba(0,0,0,0.06);
+            --glass-bg: rgba(255, 255, 255, 0.3);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
 
-   <style>
-    /* SOFT & PREMIUM COLOR PALETTE */
-    :root {
-        --bg-color: #FCF9F2;
-        --primary-dark: #2C363F;
-        --accent-color: #E76F51;
-        --accent-light: #F4A261;
-        --text-muted: #888888;
-        --card-bg: #FFFFFF;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-    body { background: var(--bg-color); padding-bottom: 90px; overflow-x: hidden; }
+        body {
+            background: var(--bg-color);
+            padding-bottom: 90px;
+            overflow-x: hidden;
+            color: var(--primary-dark);
+        }
 
-    .header { background: #FFE66D; padding: 15px 15px 25px 15px; border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-    .top-row { display: flex; align-items: center; position: relative; height: 35px; }
-    .menu-icon { font-size: 30px; cursor: pointer; z-index: 2; color: var(--primary-dark); }
-    .brand-title { position: absolute; width: 100%; left: 0; text-align: center; color: #FF0000; font-size: 26px; font-weight: 900; letter-spacing: 1px; font-family: "Trebuchet MS", sans-serif; z-index: 1; pointer-events: none; }
+        /* ----- HEADER (Glass + Gold) ----- */
+        .header {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 160, 23, 0.25);
+            padding: 15px 15px 25px 15px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            position: relative;
+            z-index: 5;
+        }
 
-    .slider { width: 92%; height: 200px; position: relative; overflow: hidden; margin: 20px auto 20px auto; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); z-index: 5; background: white; }
-    .slides { display: flex; width: 100%; height: 100%; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
-    .slide { min-width: 100%; height: 100%; }
-    .slide img { width: 100%; height: 100%; object-fit: cover; }
-    .prev, .next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(44, 54, 63, 0.6); color: white; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; cursor: pointer; z-index: 10; backdrop-filter: blur(2px); }
-    .prev { left: 10px; } .next { right: 10px; }
-    .dots { position: absolute; bottom: 12px; width: 100%; display: flex; justify-content: center; gap: 6px; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: 0.3s; }
-    .dot.active { background: white; width: 24px; border-radius: 10px; }
+        .top-row {
+            display: flex;
+            align-items: center;
+            position: relative;
+            height: 45px;
+        }
 
-    .title { font-size: 26px; color: var(--primary-dark); padding: 10px 20px 20px 20px; font-weight: 900; letter-spacing: 0.5px; }
-    .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 20px; margin-bottom: 35px; }
+        .menu-icon {
+            font-size: 32px;
+            cursor: pointer;
+            z-index: 2;
+            color: var(--primary-dark);
+            transition: transform 0.2s;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+        }
+        .menu-icon:active { transform: scale(0.85); }
 
-    .card { background: transparent; padding: 12px 10px; text-align: center; border: 2px solid var(--accent-light); border-radius: 20px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12); cursor: pointer; transition: transform 0.2s, border-color 0.3s, box-shadow 0.2s; }
-    .card:active { transform: scale(0.95); border-color: var(--accent-color); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); }
-    .card img { width: 100%; height: 150px; border-radius: 15px; object-fit: contain; background: transparent; margin-bottom: 10px; filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.35)); }
-    .card h3 { margin-top: 5px; color: var(--primary-dark); font-size: 16px; font-weight: 900; }
+        .brand-title {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #F5C842, #D4A017, #F5C842);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            z-index: 1;
+            pointer-events: none;
+            animation: shimmerGold 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(212, 160, 23, 0.15);
+        }
 
-    .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 12px 0 15px 0; z-index: 100; box-shadow: 0 -5px 25px rgba(0,0,0,0.06); border-top-left-radius: 25px; border-top-right-radius: 25px; }
-    .bottom-nav div { color: var(--text-muted); text-align: center; font-size: 12px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-    .icon { font-size: 24px; margin-bottom: 3px; font-style: normal; transition: transform 0.2s; }
-    .bottom-nav div:active .icon { transform: scale(0.85); }
-    .icon-wrapper { position: relative; display: inline-block; }
-    .active-nav { color: var(--accent-color) !important; }
-    .cart-badge { position: absolute; top: -5px; right: -8px; background: var(--accent-color); color: white; font-size: 10px; font-weight: bold; border-radius: 50%; width: 18px; height: 18px; display: none; align-items: center; justify-content: center; border: 2px solid white; box-sizing: content-box; }
+        @keyframes shimmerGold {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    .side-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(44, 54, 63, 0.7); z-index: 998; opacity: 0; pointer-events: none; transition: 0.3s ease-in-out; backdrop-filter: blur(3px); }
-    .side-menu-overlay.active { opacity: 1; pointer-events: auto; }
-    .side-menu { position: fixed; top: 0; left: -100%; width: 80%; max-width: 320px; height: 100vh; background: var(--bg-color); z-index: 999; transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1); display: flex; flex-direction: column; overflow-y: auto; box-shadow: 5px 0 25px rgba(0,0,0,0.15); }
-    .side-menu.active { left: 0; }
-    .side-menu-top { display: flex; justify-content: space-between; align-items: center; padding: 25px 20px 10px 20px; }
-    .back-btn { font-size: 26px; color: var(--primary-dark); cursor: pointer; background: none; border: none; }
+        /* ----- SLIDER (Glass Card) ----- */
+        .slider {
+            width: 92%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            margin: 25px auto 20px auto;
+            border-radius: 28px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            z-index: 5;
+            background: var(--glass-bg);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--glass-border);
+        }
 
-    .login-container { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 0 30px; }
-    .splash-img { width: 180px; height: 180px; background: url('https://cdn-icons-png.flaticon.com/512/3135/3135715.png') no-repeat center center; background-size: contain; margin-bottom: 20px; opacity: 0.9; }
-    .login-title { font-size: 28px; color: var(--primary-dark); font-weight: 900; margin-bottom: 30px; letter-spacing: 1px; }
-    .input-group { display: flex; align-items: center; width: 100%; background: white; padding: 15px 20px; border-radius: 15px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05); }
-    .email-input { border: none; background: transparent; outline: none; font-size: 15px; color: var(--primary-dark); width: 100%; font-weight: bold; }
-    .proceed-btn { width: 100%; background: #d9dada; color: white; font-size: 18px; font-weight: bold; border: none; padding: 16px; border-radius: 15px; cursor: not-allowed; transition: 0.3s ease; margin-top: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-    .login-disclaimer { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 25px; line-height: 1.5; padding: 0 5px; margin-bottom: 70px; }
+        .slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
-    .profile-container { display: none; width: 100%; padding: 0 20px; padding-bottom: 50px; }
-    .profile-header-info { display: flex; align-items: center; gap: 15px; margin-bottom: 35px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.02); }
-    .avatar { width: 60px; height: 60px; background: #FFF9F5 url('logo.jpg') no-repeat center center; background-size: contain; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 2px solid var(--accent-light); }
-    .user-details h2 { color: var(--primary-dark); font-size: 20px; font-weight: 900; display: flex; align-items: center; gap: 8px; }
-    .edit-icon { font-size: 16px; cursor: pointer; color: var(--accent-color); transition: transform 0.2s; background: #FFF5F0; padding: 5px; border-radius: 50%; display: flex; }
-    .edit-icon:active { transform: scale(0.8); }
-    .user-details p { color: var(--text-muted); font-size: 13px; font-weight: bold; margin-top: 4px; }
+        .slide {
+            min-width: 100%;
+            height: 100%;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .profile-menu-list { display: flex; flex-direction: column; background: white; border-radius: 20px; padding: 10px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.02); }
-    .profile-menu-item { display: flex; align-items: center; gap: 15px; padding: 16px 20px; color: var(--primary-dark); font-size: 15px; font-weight: bold; cursor: pointer; border-bottom: 1px solid rgba(0,0,0,0.03); transition: background 0.2s; }
-    .profile-menu-item:active { background: #FCF9F2; }
-    .profile-menu-item:last-child { border-bottom: none; }
-    .menu-icon-img { font-size: 20px; width: 25px; text-align: center; }
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(44, 30, 22, 0.5);
+            backdrop-filter: blur(6px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .prev:hover, .next:hover {
+            background: rgba(44, 30, 22, 0.8);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .prev { left: 12px; }
+        .next { right: 12px; }
 
-    .top-alert { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: #4CAF50; color: white; padding: 15px 20px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center; z-index: 10000; transition: top 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
-    .top-alert.show { top: 20px; }
-    .top-alert-msg { font-size: 14px; font-weight: bold; flex: 1; }
-    .top-alert-close { cursor: pointer; font-size: 20px; font-weight: bold; margin-left: 15px; width: 25px; height: 25px; display: flex; align-items: center; justify-content: center; }
+        .dots {
+            position: absolute;
+            bottom: 14px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
 
-    .custom-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(44, 54, 63, 0.7); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(3px); opacity: 0; transition: opacity 0.3s ease; }
-    .custom-modal.show { display: flex; opacity: 1; }
-    .modal-content { background: white; padding: 30px 20px; border-radius: 25px; text-align: center; width: 80%; max-width: 320px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transform: translateY(20px) scale(0.95); transition: transform 0.3s ease; }
-    .close-modal-btn { background: var(--accent-color); color: white; border: none; padding: 14px 30px; border-radius: 15px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
-</style>
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .dot.active {
+            background: var(--accent-glow);
+            width: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 16px rgba(245, 200, 66, 0.4);
+        }
 
-Aa bala style bas index.html me hai iska premium bala do
-</style>
+        /* ----- TITLE ----- */
+        .title {
+            font-size: 28px;
+            padding: 10px 20px 20px 20px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            position: relative;
+            color: var(--primary-dark);
+        }
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: 12px;
+            left: 20px;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-glow), var(--accent-gold));
+            border-radius: 4px;
+        }
 
-<script src="\u003Cscript src=\"https://www.gstatic.com\u003Cscript src=\"\\u003Cscript src=\\\"https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js\\\">\\u003C/script>https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js\">\u003C/script>/firebasejs/8.10.1/firebase-app.js\">\u003C/script>https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-<script src="firebase-config.js"></script>
+        /* ----- MENU GRID (Glass Cards) ----- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            padding: 0 20px;
+            margin-bottom: 35px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            padding: 16px 12px 20px;
+            text-align: center;
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .card:active {
+            transform: scale(0.96);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-color: var(--accent-glow);
+        }
+        .card img {
+            width: 100%;
+            height: 150px;
+            border-radius: 18px;
+            object-fit: contain;
+            background: transparent;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 12px 20px rgba(0,0,0,0.06));
+            transition: filter 0.3s;
+        }
+        .card:hover img {
+            filter: drop-shadow(0 16px 28px rgba(0,0,0,0.1));
+        }
+        .card h3 {
+            margin-top: 8px;
+            color: var(--primary-dark);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        /* ----- BOTTOM NAV (Glass) ----- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            display: flex;
+            justify-content: space-around;
+            padding: 14px 0 18px 0;
+            z-index: 100;
+            box-shadow: 0 -8px 30px rgba(0,0,0,0.04);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+
+        .bottom-nav div {
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.25s;
+            padding: 4px 12px;
+            border-radius: 30px;
+        }
+        .bottom-nav div:active .icon { transform: scale(0.85); }
+
+        .icon {
+            font-size: 26px;
+            margin-bottom: 2px;
+            font-style: normal;
+            transition: transform 0.2s;
+            display: block;
+        }
+
+        .active-nav {
+            color: var(--accent-gold) !important;
+            background: rgba(212, 160, 23, 0.08);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -10px;
+            background: var(--accent-glow);
+            color: var(--primary-dark);
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(212, 160, 23, 0.3);
+        }
+
+        .icon-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* ----- SIDE MENU (Glass) ----- */
+        .side-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(44, 30, 22, 0.4);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .side-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 340px;
+            height: 100vh;
+            background: rgba(252, 248, 242, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            box-shadow: 8px 0 40px rgba(0, 0, 0, 0.08);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .side-menu.active { left: 0; }
+
+        .side-menu-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 20px 15px 20px;
+        }
+        .back-btn {
+            font-size: 28px;
+            color: var(--primary-dark);
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: transform 0.2s;
+        }
+        .back-btn:active { transform: scale(0.85); }
+
+        /* ----- LOGIN AREA ----- */
+        .login-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 30px;
+        }
+        .splash-img {
+            width: 160px;
+            height: 160px;
+            background: url('https://cdn-icons-png.flaticon.com/512/3135/3135715.png') no-repeat center center;
+            background-size: contain;
+            margin-bottom: 15px;
+            opacity: 0.85;
+            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.04));
+        }
+        .login-title {
+            font-size: 30px;
+            color: var(--primary-dark);
+            font-weight: 900;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 15px 20px;
+            border-radius: 18px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: border-color 0.2s;
+        }
+        .input-group:focus-within {
+            border-color: var(--accent-glow);
+            box-shadow: 0 0 0 4px rgba(245, 200, 66, 0.08);
+        }
+        .email-input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 15px;
+            color: var(--primary-dark);
+            width: 100%;
+            font-weight: 500;
+        }
+
+        .proceed-btn {
+            width: 100%;
+            background: #D4D0CC;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            padding: 16px;
+            border-radius: 18px;
+            cursor: not-allowed;
+            transition: 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .proceed-btn.enabled {
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-gold));
+            color: var(--primary-dark);
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(212, 160, 23, 0.25);
+        }
+        .proceed-btn.enabled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(212, 160, 23, 0.3);
+        }
+
+        .login-disclaimer {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 25px;
+            line-height: 1.6;
+            padding: 0 5px;
+            margin-bottom: 70px;
+        }
+
+        /* ----- PROFILE ----- */
+        .profile-container {
+            display: none;
+            width: 100%;
+            padding: 0 20px;
+            padding-bottom: 50px;
+        }
+        .profile-header-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 35px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(6px);
+            padding: 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-soft);
+        }
+        .avatar {
+            width: 65px;
+            height: 65px;
+            background: #FFF9F5 url('logo.jpg') no-repeat center center;
+            background-size: contain;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 2px solid var(--accent-glow);
+        }
+        .user-details h2 {
+            color: var(--primary-dark);
+            font-size: 20px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .edit-icon {
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--accent-gold);
+            transition: transform 0.2s;
+            background: rgba(212, 160, 23, 0.08);
+            padding: 6px;
+            border-radius: 50%;
+            display: flex;
+        }
+        .edit-icon:active { transform: scale(0.8); }
+        .user-details p {
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .profile-menu-list {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(6px);
+            border-radius: 24px;
+            padding: 8px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-soft);
+        }
+        .profile-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            color: var(--primary-dark);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            transition: background 0.2s;
+        }
+        .profile-menu-item:active {
+            background: rgba(212, 160, 23, 0.06);
+        }
+        .profile-menu-item:last-child { border-bottom: none; }
+        .menu-icon-img {
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+
+        /* ----- TOAST / ALERT (Gold accent) ----- */
+        .top-alert {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(44, 30, 22, 0.95);
+            backdrop-filter: blur(8px);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10000;
+            transition: top 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+        }
+        .top-alert.show { top: 20px; }
+        .top-alert-msg {
+            font-size: 14px;
+            font-weight: 600;
+            flex: 1;
+        }
+        .top-alert-close {
+            cursor: pointer;
+            font-size: 22px;
+            font-weight: 700;
+            margin-left: 15px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .top-alert-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* ----- MODAL (Gold accent) ----- */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(44, 30, 22, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .custom-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 35px 25px;
+            border-radius: 30px;
+            text-align: center;
+            width: 85%;
+            max-width: 340px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transform: translateY(20px) scale(0.96);
+            transition: transform 0.3s ease;
+        }
+        .custom-modal.show .modal-content {
+            transform: translateY(0) scale(1);
+        }
+        .close-modal-btn {
+            background: linear-gradient(135deg, var(--accent-glow), var(--accent-gold));
+            color: var(--primary-dark);
+            border: none;
+            padding: 14px 30px;
+            border-radius: 18px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 12px;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(212, 160, 23, 0.2);
+        }
+        .close-modal-btn:active { transform: scale(0.96); }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 600px) {
+            .brand-title { font-size: 24px; }
+            .menu-grid { gap: 12px; }
+            .card img { height: 120px; }
+        }
+    </style>
+
+    <!-- ===== FIREBASE SDK ===== -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="firebase-config.js"></script>
 
 </head>
 <body>
 
-<div class="top-alert" id="topAlert">
-    <div class="top-alert-msg" id="topAlertMsg">Notification message</div>
-    <div class="top-alert-close" onclick="closeTopAlert()">×</div>
-</div>
-
-<div class="header">
-    <div class="top-row">
-        <div class="menu-icon" onclick="openSideMenu()">☰</div>
-        <div class="brand-title" id="displayBrandTitle">Dreamy Delight</div>
-    </div>
-</div>
-
-<div class="slider">
-    <div class="slides" id="userSlidesContainer"></div>
-    <button class="prev" onclick="prevSlide()">❮</button>
-    <button class="next" onclick="nextSlide()">❯</button>
-    <div class="dots" id="userDotsContainer"></div>
-</div>
-
-<div class="title">Our Menu</div>
-
-<div class="menu-grid" id="userCategoriesContainer"></div>
-
-<div class="bottom-nav">
-    <div class="active-nav"><div class="icon">🏠</div>Home</div>
-    <div onclick="window.location.href='menu.html'"><div class="icon">🍔</div>Menu</div>
-    <div onclick="window.location.href='cart.html'">
-        <div class="icon-wrapper">
-            <div class="icon">🛒</div><span class="cart-badge" id="cartCount">0</span>
-        </div><div>Cart</div>
-    </div>
-    <div onclick="showComingSoonModal()"><div class="icon">🎁</div>Rewards</div>
-</div>
-
-<div class="side-menu-overlay" id="sideMenuOverlay" onclick="closeSideMenu()"></div>
-
-<div class="side-menu" id="sideMenu">
-    <div class="side-menu-top">
-        <button class="back-btn" onclick="closeSideMenu()">← Back</button>
+    <!-- ===== TOP ALERT ===== -->
+    <div class="top-alert" id="topAlert">
+        <div class="top-alert-msg" id="topAlertMsg">Notification</div>
+        <div class="top-alert-close" onclick="closeTopAlert()">&times;</div>
     </div>
 
-    <div class="login-container" id="loginFormContainer">
-        <div class="splash-img"></div>
-        <h1 class="login-title">Welcome Back</h1>
-        <div style="width: 100%;">
-            <div class="input-group">
-                <input type="email" id="emailBox" class="email-input" placeholder="Enter your email (@gmail.com)">
-            </div>
-            <div class="input-group">
-                <input type="password" id="passBox" class="email-input" placeholder="Enter password (Min 8 chars)">
-            </div>
-            <button id="proceedBtn" class="proceed-btn" disabled onclick="handleDatabaseAuth()">Proceed</button>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="top-row">
+            <div class="menu-icon" onclick="openSideMenu()">☰</div>
+            <div class="brand-title" id="displayBrandTitle">Dreamy Delight</div>
         </div>
-        <p class="login-disclaimer">Note: We currently do not have a password reset feature. If you forget your password, please contact customer care or create a new ID.</p>
+    </header>
+
+    <!-- ===== SLIDER ===== -->
+    <div class="slider">
+        <div class="slides" id="userSlidesContainer"></div>
+        <button class="prev" onclick="prevSlide()">❮</button>
+        <button class="next" onclick="nextSlide()">❯</button>
+        <div class="dots" id="userDotsContainer"></div>
     </div>
 
-    <div class="profile-container" id="profileContainer">
-        <div class="profile-header-info">
-            <div class="avatar"></div>
-            <div class="user-details">
-                <h2 id="profileName">User <span class="edit-icon" onclick="window.location.href='editprofile.html'">✏️</span></h2>
-                <p id="profileEmail">user@gmail.com</p>
+    <!-- ===== MENU TITLE ===== -->
+    <div class="title">Our Menu</div>
+
+    <!-- ===== CATEGORIES GRID ===== -->
+    <div class="menu-grid" id="userCategoriesContainer"></div>
+
+    <!-- ===== BOTTOM NAV ===== -->
+    <nav class="bottom-nav">
+        <div class="active-nav"><span class="icon">🏠</span>Home</div>
+        <div onclick="window.location.href='menu.html'"><span class="icon">🍔</span>Menu</div>
+        <div onclick="window.location.href='cart.html'">
+            <span class="icon-wrapper">
+                <span class="icon">🛒</span>
+                <span class="cart-badge" id="cartCount">0</span>
+            </span>
+            Cart
+        </div>
+        <div onclick="showComingSoonModal()"><span class="icon">🎁</span>Rewards</div>
+    </nav>
+
+    <!-- ===== SIDE MENU OVERLAY ===== -->
+    <div class="side-menu-overlay" id="sideMenuOverlay" onclick="closeSideMenu()"></div>
+
+    <!-- ===== SIDE MENU ===== -->
+    <div class="side-menu" id="sideMenu">
+        <div class="side-menu-top">
+            <button class="back-btn" onclick="closeSideMenu()">← Back</button>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-container" id="loginFormContainer">
+            <div class="splash-img"></div>
+            <h1 class="login-title">Welcome Back</h1>
+            <div style="width:100%;">
+                <div class="input-group">
+                    <input type="email" id="emailBox" class="email-input" placeholder="Enter email (@gmail.com)">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="passBox" class="email-input" placeholder="Password (min 8 chars)">
+                </div>
+                <button id="proceedBtn" class="proceed-btn" disabled onclick="handleDatabaseAuth()">Proceed</button>
+            </div>
+            <p class="login-disclaimer">No password reset yet. Contact customer care if needed.</p>
+        </div>
+
+        <!-- Profile -->
+        <div class="profile-container" id="profileContainer">
+            <div class="profile-header-info">
+                <div class="avatar"></div>
+                <div class="user-details">
+                    <h2 id="profileName">User <span class="edit-icon" onclick="window.location.href='editprofile.html'">✏️</span></h2>
+                    <p id="profileEmail">user@gmail.com</p>
+                </div>
+            </div>
+            <div class="profile-menu-list">
+                <div class="profile-menu-item" onclick="window.location.href='order.html'"><span class="menu-icon-img">🕒</span> Recent Orders</div>
+                <div class="profile-menu-item" onclick="window.location.href='addresses.html'"><span class="menu-icon-img">📍</span> Saved Addresses</div>
+                <div style="border-bottom:5px solid #FCF8F2;"></div>
+                <div class="profile-menu-item" onclick="window.location.href='customercare.html'"><span class="menu-icon-img">🎧</span> Customer Care</div>
+                <div class="profile-menu-item" onclick="window.location.href='terms.html'"><span class="menu-icon-img">📄</span> Legal Terms</div>
+                <div style="border-bottom:5px solid #FCF8F2;"></div>
+                <div class="profile-menu-item" onclick="logoutUser()" style="color:var(--accent-gold);"><span class="menu-icon-img">🚪</span> Logout Safely</div>
             </div>
         </div>
-        <div class="profile-menu-list">
-            <div class="profile-menu-item" onclick="window.location.href='order.html'"><span class="menu-icon-img">🕒</span> Recent Orders</div>
-            <div class="profile-menu-item" onclick="window.location.href='addresses.html'"><span class="menu-icon-img">📍</span> Saved Addresses</div>
-            <div style="border-bottom: 5px solid #FCF9F2;"></div>
-            <div class="profile-menu-item" onclick="window.location.href='customercare.html'"><span class="menu-icon-img">🎧</span> Customer Care</div>
-            <div class="profile-menu-item" onclick="window.location.href='terms.html'"><span class="menu-icon-img">📄</span> Legal Terms</div>
-            <div style="border-bottom: 5px solid #FCF9F2;"></div>
-            <div class="profile-menu-item" onclick="logoutUser()" style="color: #E76F51;"><span class="menu-icon-img">🚪</span> Logout Safely</div>
+    </div>
+
+    <!-- ===== MODAL (Coming Soon) ===== -->
+    <div id="comingSoonModal" class="custom-modal">
+        <div class="modal-content">
+            <div style="font-size:50px; margin-bottom:10px;">🎁</div>
+            <h2 style="color:var(--primary-dark); margin-bottom:10px;">Coming Soon!</h2>
+            <p style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">Exciting rewards are on the way. Stay tuned!</p>
+            <button class="close-modal-btn" onclick="closeComingSoonModal()">Got It</button>
         </div>
     </div>
-</div>
 
-<div id="comingSoonModal" class="custom-modal">
-    <div class="modal-content">
-        <div style="font-size: 50px; margin-bottom: 10px;">🎁</div>
-        <h2 style="color: #2C363F; margin-bottom: 10px;">Coming Soon!</h2>
-        <p style="color: #888; font-size: 14px; margin-bottom: 20px;">We are working hard to bring you exciting rewards. Stay tuned!</p>
-        <button class="close-modal-btn" onclick="closeComingSoonModal()">Got It</button>
-    </div>
-</div>
-
-<script>
-const db = firebase.database();
-
-let sliderIndex = 0;
-let autoSliderTimer; 
-
-const fallbackBanners = [
-    "https://iili.io/By7qgdQ.jpg",
-    "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200"
-];
-const fallbackCategories = [
-    { id: "chaumin", name: "SANDWICH", img: "https://i.imgur.com/Qa6Y4Qf.png" }
-];
-
-function setSecureCookie(name, value, days) {
-    let expires = "";
-    if (days) {
-        let date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-
-function getSecureCookie(name) {
-    let nameEQ = name + "=";
-    let ca = document.cookie.split(';');
-    for(let i=0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    updateCartBadge(); 
-
-    const savedEmail = localStorage.getItem("loggedInEmail") || getSecureCookie("loggedInEmail");
-    const savedName = localStorage.getItem("loggedInName") || getSecureCookie("loggedInName");
-
-    if(savedEmail) {
-        localStorage.setItem("loggedInEmail", savedEmail);
-        if(savedName) localStorage.setItem("loggedInName", savedName);
-        updateUIForLoggedInUser(savedEmail, savedName || "User");
-    } else {
-        updateUIForLoggedOutUser();
-    }
-
-    const localLayout = localStorage.getItem("userCachedHomeLayout");
-    const localCats = localStorage.getItem("userCachedMenuCats");
-
-    if(localLayout) parseAndBuildLiveBanners(JSON.parse(localLayout));
-    else buildStaticBannersFallback();
-
-    if(localCats) buildUserCategoriesGrid(JSON.parse(localCats));
-    else buildUserCategoriesGrid(fallbackCategories);
-
-    db.ref('homepage_config').on('value', (snapshot) => {
-        if(snapshot.exists()) {
-            const serverConfig = snapshot.val();
-            localStorage.setItem("userCachedHomeLayout", JSON.stringify(serverConfig));
-            parseAndBuildLiveBanners(serverConfig);
-        }
-    });
-
-    db.ref('menu_categories').on('value', (catSnapshot) => {
-        if(catSnapshot.exists()) {
-            const val = catSnapshot.val();
-            const normalizedCats = Array.isArray(val) ? val : Object.values(val);
-            localStorage.setItem("userCachedMenuCats", JSON.stringify(normalizedCats));
-            buildUserCategoriesGrid(normalizedCats);
-        }
-    });
-
-    startAutoSlider();
-});
-
-document.addEventListener('gesturestart', function (e) { e.preventDefault(); });
-
-window.addEventListener('popstate', function(event) {
-    if (document.getElementById("sideMenu").classList.contains("active")) {
-        closeSideMenu(true);
-    }
-});
-
-function openSideMenu() { 
-    document.getElementById("sideMenu").classList.add("active"); 
-    document.getElementById("sideMenuOverlay").classList.add("active"); 
-    history.pushState({ sideMenuOpen: true }, '');
-}
-
-function closeSideMenu(fromPopState = false) { 
-    document.getElementById("sideMenu").classList.remove("active"); 
-    document.getElementById("sideMenuOverlay").classList.remove("active"); 
-    if (!fromPopState && history.state && history.state.sideMenuOpen) {
-        history.back();
-    }
-}
-
-function buildStaticBannersFallback() {
-    buildLiveSlider(fallbackBanners);
-}
-
-function parseAndBuildLiveBanners(config) {
-    if(config.brandTitle) document.getElementById("displayBrandTitle").innerText = config.brandTitle;
-    let banners = [];
-    if(config.banners) { banners = Array.isArray(config.banners) ? config.banners : Object.values(config.banners); }
-    if(banners.length === 0) banners = fallbackBanners;
-    buildLiveSlider(banners);
-}
-
-function buildLiveSlider(bannersList) {
-    const container = document.getElementById("userSlidesContainer");
-    container.innerHTML = "";
-    bannersList.forEach(src => {
-        const slide = document.createElement("div");
-        slide.classList.add("slide");
-        slide.innerHTML = `<img src="${src}">`;
-        container.appendChild(slide);
-    });
-    sliderIndex = 0;
-    container.style.transform = `translateX(0%)`;
-    buildDotsNavigator(bannersList.length);
-}
-
-function buildDotsNavigator(count) {
-    const dotsContainer = document.getElementById("userDotsContainer");
-    dotsContainer.innerHTML = "";
-    for(let i=0; i<count; i++) {
-        const dot = document.createElement("div");
-        dot.classList.add("dot");
-        if(i === 0) dot.classList.add("active");
-        dotsContainer.appendChild(dot);
-    }
-}
-
-function buildUserCategoriesGrid(categoriesList) {
-    const grid = document.getElementById("userCategoriesContainer");
-    grid.innerHTML = "";
-
-    categoriesList.forEach(cat => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.onclick = function() {
-            localStorage.setItem("userSelectedCategoryIntent", cat.id);
-            window.location.href = 'menu.html';
-        };
-        card.innerHTML = `<img src="${cat.img}"><h3>${cat.name}</h3>`;
-        grid.appendChild(card);
-    });
-}
-
-function updateSliderPosition() {
-    const container = document.getElementById("userSlidesContainer");
-    const total = document.querySelectorAll("#userSlidesContainer .slide").length;
-    if(total === 0) return;
-    if(sliderIndex >= total) sliderIndex = 0;
-    if(sliderIndex < 0) sliderIndex = total - 1;
-    container.style.transform = `translateX(-${sliderIndex * 100}%)`;
-
-    const dots = document.querySelectorAll("#userDotsContainer .dot");
-    dots.forEach(dot => dot.classList.remove("active"));
-    if(dots[sliderIndex]) dots[sliderIndex].classList.add("active");
-}
-
-function nextSlide() { sliderIndex++; updateSliderPosition(); }
-function prevSlide() { sliderIndex--; updateSliderPosition(); }
-
-function startAutoSlider() {
-    clearInterval(autoSliderTimer);
-    autoSliderTimer = setInterval(() => { nextSlide(); }, 3500);
-}
-
-function updateCartBadge() {
-    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
-    let totalItems = 0;
-    for(let i=0; i<cart.length; i++) { totalItems += cart[i].qty; }
-    const badge = document.getElementById("cartCount");
-    badge.innerText = totalItems;
-    if(totalItems > 0) badge.style.display = "flex";
-    else badge.style.display = "none";
-}
-
-function handleDatabaseAuth() {
-    const email = document.getElementById("emailBox").value.trim().toLowerCase();
-    const pass = document.getElementById("passBox").value;
-    const btn = document.getElementById("proceedBtn");
-
-    btn.innerText = "Processing..."; 
-    btn.disabled = true;
-
-    const dbKey = email.replace(/\./g, ',');
-    const encryptedPass = btoa(pass + "_dreamySec"); 
-
-    db.ref('users/' + dbKey).once('value').then((snapshot) => {
-        if (snapshot.exists()) {
-            const userData = snapshot.val();
-            if (userData.password === encryptedPass || userData.password === pass) {
-                saveSessionData(email, userData.name || email.split('@')[0]);
-                showTopAlert("Login Successful! 🎉", "success");
-                updateUIForLoggedInUser(email, userData.name || email.split('@')[0]);
-                closeSideMenu();
-            } else { showTopAlert("Incorrect Password.", "error"); }
-            resetBtnState();
+    <!-- ========================================================= -->
+    <!-- ===================== JAVASCRIPT ========================== -->
+    <!-- ========================================================= -->
+    <script>
+        // ---- Ensure Firebase is loaded ----
+        if (typeof firebase === 'undefined') {
+            alert('Firebase not loaded. Check internet connection.');
         } else {
-            const defaultName = email.split('@')[0];
-            db.ref('users/' + dbKey).set({ email: email, password: encryptedPass, name: defaultName }).then(() => {
-                saveSessionData(email, defaultName);
-                showTopAlert("Registration Successful! 🎉", "success");
-                updateUIForLoggedInUser(email, defaultName);
-                closeSideMenu(); resetBtnState();
-            }).catch((err) => { showTopAlert("Database Error: " + err.message, "error"); resetBtnState(); });
+            console.log('🔥 Firebase ready');
         }
-    }).catch((error) => { showTopAlert("Network Error: " + error.message, "error"); resetBtnState(); });
-}
 
-function saveSessionData(email, name) {
-    localStorage.setItem("loggedInEmail", email);
-    localStorage.setItem("loggedInName", name);
-    setSecureCookie("loggedInEmail", email, 365);
-    setSecureCookie("loggedInName", name, 365);
-}
+        const db = firebase.database();
 
-function resetBtnState() {
-    const btn = document.getElementById("proceedBtn");
-    btn.innerText = "Proceed"; btn.disabled = false; validateLogin();
-}
+        // ---- Slider & Categories ----
+        let sliderIndex = 0;
+        let autoSliderTimer;
 
-function logoutUser() {
-    localStorage.removeItem("loggedInEmail"); 
-    localStorage.removeItem("loggedInName");
-    setSecureCookie("loggedInEmail", "", -1);
-    setSecureCookie("loggedInName", "", -1);
+        const fallbackBanners = [
+            'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=400&fit=crop'
+        ];
+        const fallbackCategories = [
+            { id: 'pizza', name: 'Pizza', img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
+            { id: 'burger', name: 'Burger', img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png' },
+            { id: 'pasta', name: 'Pasta', img: 'https://cdn-icons-png.flaticon.com/512/2926/2926935.png' },
+            { id: 'sides', name: 'Sides', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710281.png' }
+        ];
 
-    updateUIForLoggedOutUser(); 
-    showTopAlert("Logged Out Successfully", "success"); 
-    closeSideMenu();
-}
+        // ---- Load data from Firebase or fallback ----
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load banners
+            const cachedBanners = localStorage.getItem('userCachedHomeLayout');
+            if (cachedBanners) {
+                try {
+                    const parsed = JSON.parse(cachedBanners);
+                    if (parsed.banners && parsed.banners.length) {
+                        buildLiveSlider(parsed.banners);
+                    } else {
+                        buildLiveSlider(fallbackBanners);
+                    }
+                } catch (e) {
+                    buildLiveSlider(fallbackBanners);
+                }
+            } else {
+                buildLiveSlider(fallbackBanners);
+            }
 
-function updateUIForLoggedInUser(email, name) {
-    document.getElementById("loginFormContainer").style.display = "none";
-    document.getElementById("profileContainer").style.display = "block";
-    const formatName = name.charAt(0).toUpperCase() + name.slice(1);
-    document.getElementById("profileName").innerHTML = formatName + ` <span class="edit-icon" onclick="window.location.href='editprofile.html'">✏️</span>`;
-    document.getElementById("profileEmail").innerText = email;
-}
+            // Load categories
+            const cachedCats = localStorage.getItem('userCachedMenuCats');
+            if (cachedCats) {
+                try {
+                    const parsed = JSON.parse(cachedCats);
+                    if (parsed.length) {
+                        buildUserCategoriesGrid(parsed);
+                    } else {
+                        buildUserCategoriesGrid(fallbackCategories);
+                    }
+                } catch (e) {
+                    buildUserCategoriesGrid(fallbackCategories);
+                }
+            } else {
+                buildUserCategoriesGrid(fallbackCategories);
+            }
 
-function updateUIForLoggedOutUser() {
-    document.getElementById("loginFormContainer").style.display = "flex";
-    document.getElementById("profileContainer").style.display = "none";
-    document.getElementById("emailBox").value = ""; document.getElementById("passBox").value = "";
-    validateLogin(); 
-}
+            // Listen for real-time updates
+            db.ref('homepage_config').on('value', (snapshot) => {
+                if (snapshot.exists()) {
+                    const config = snapshot.val();
+                    localStorage.setItem('userCachedHomeLayout', JSON.stringify(config));
+                    if (config.banners) {
+                        const banners = Array.isArray(config.banners) ? config.banners : Object.values(config.banners);
+                        if (banners.length) buildLiveSlider(banners);
+                    }
+                    if (config.brandTitle) {
+                        document.getElementById('displayBrandTitle').innerText = config.brandTitle;
+                    }
+                }
+            });
 
-const emailInput = document.getElementById('emailBox');
-const passInput = document.getElementById('passBox');
-const proceedBtn = document.getElementById('proceedBtn');
+            db.ref('menu_categories').on('value', (snapshot) => {
+                if (snapshot.exists()) {
+                    const val = snapshot.val();
+                    const cats = Array.isArray(val) ? val : Object.values(val);
+                    localStorage.setItem('userCachedMenuCats', JSON.stringify(cats));
+                    buildUserCategoriesGrid(cats);
+                }
+            });
 
-function validateLogin() {
-    if (emailInput.value.includes("@gmail.com") && passInput.value.length >= 8) {
-        proceedBtn.disabled = false; proceedBtn.style.background = "var(--accent-color)"; proceedBtn.style.cursor = "pointer";
-    } else {
-        proceedBtn.disabled = true; proceedBtn.style.background = "#d9dada"; proceedBtn.style.cursor = "not-allowed"; proceedBtn.innerText = "Proceed";
-    }
-}
-emailInput.addEventListener('input', validateLogin); passInput.addEventListener('input', validateLogin);
+            // Cart badge
+            updateCartBadge();
 
-function showTopAlert(msg, type) {
-    const alertBox = document.getElementById("topAlert");
-    document.getElementById("topAlertMsg").innerText = msg;
-    alertBox.style.background = type === 'error' ? "#e53300" : "#4CAF50";
-    alertBox.classList.add("show");
-    setTimeout(() => closeTopAlert(), 3000);
-}
-function closeTopAlert() { document.getElementById("topAlert").classList.remove("show"); }
+            // Login session
+            const savedEmail = localStorage.getItem('loggedInEmail');
+            const savedName = localStorage.getItem('loggedInName');
+            if (savedEmail) {
+                updateUIForLoggedInUser(savedEmail, savedName || 'User');
+            } else {
+                updateUIForLoggedOutUser();
+            }
 
-function showComingSoonModal() {
-    const modal = document.getElementById("comingSoonModal"); modal.style.display = "flex";
-    setTimeout(() => { modal.classList.add("show"); }, 10);
-}
-function closeComingSoonModal() {
-    const modal = document.getElementById("comingSoonModal"); modal.classList.remove("show");
-    setTimeout(() => { modal.style.display = "none"; }, 300);
-}
-</script>
+            startAutoSlider();
+        });
+
+        // ---- Build Slider ----
+        function buildLiveSlider(banners) {
+            const container = document.getElementById('userSlidesContainer');
+            container.innerHTML = '';
+            banners.forEach(src => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                slide.innerHTML = `<img src="${src}" alt="banner" loading="lazy">`;
+                container.appendChild(slide);
+            });
+            sliderIndex = 0;
+            container.style.transform = 'translateX(0%)';
+            buildDots(banners.length);
+        }
+
+        function buildDots(count) {
+            const dotsContainer = document.getElementById('userDotsContainer');
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateSliderPosition() {
+            const slides = document.querySelectorAll('#userSlidesContainer .slide');
+            const total = slides.length;
+            if (total === 0) return;
+            if (sliderIndex >= total) sliderIndex = 0;
+            if (sliderIndex < 0) sliderIndex = total - 1;
+            document.getElementById('userSlidesContainer').style.transform = `translateX(-${sliderIndex * 100}%)`;
+
+            const dots = document.querySelectorAll('#userDotsContainer .dot');
+            dots.forEach((d, i) => d.classList.toggle('active', i === sliderIndex));
+        }
+
+        function nextSlide() { sliderIndex++;
+            updateSliderPosition(); }
+
+        function prevSlide() { sliderIndex--;
+            updateSliderPosition(); }
+
+        function startAutoSlider() {
+            clearInterval(autoSliderTimer);
+            autoSliderTimer = setInterval(() => nextSlide(), 4000);
+        }
+
+        // ---- Build Categories ----
+        function buildUserCategoriesGrid(cats) {
+            const grid = document.getElementById('userCategoriesContainer');
+            grid.innerHTML = '';
+            cats.forEach(cat => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.onclick = () => {
+                    localStorage.setItem('userSelectedCategoryIntent', cat.id);
+                    window.location.href = 'menu.html';
+                };
+                card.innerHTML = `<img src="${cat.img}" alt="${cat.name}" loading="lazy"><h3>${cat.name}</h3>`;
+                grid.appendChild(card);
+            });
+        }
+
+        // ---- Cart Badge ----
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('myCart')) || [];
+            const total = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+            const badge = document.getElementById('cartCount');
+            badge.innerText = total;
+            badge.style.display = total > 0 ? 'flex' : 'none';
+        }
+
+        // ---- Authentication ----
+        function handleDatabaseAuth() {
+            const email = document.getElementById('emailBox').value.trim().toLowerCase();
+            const pass = document.getElementById('passBox').value;
+            const btn = document.getElementById('proceedBtn');
+
+            if (!email.includes('@gmail.com') || pass.length < 8) {
+                showTopAlert('Please enter a valid @gmail.com email and min 8 chars password.', 'error');
+                return;
+            }
+
+            btn.innerText = 'Processing...';
+            btn.disabled = true;
+
+            const dbKey = email.replace(/\./g, ',');
+            const encryptedPass = btoa(pass + '_dreamySec');
+
+            db.ref('users/' + dbKey).once('value').then(snap => {
+                if (snap.exists()) {
+                    const data = snap.val();
+                    if (data.password === encryptedPass || data.password === pass) {
+                        saveSession(email, data.name || email.split('@')[0]);
+                        showTopAlert('✅ Login successful!', 'success');
+                        updateUIForLoggedInUser(email, data.name || email.split('@')[0]);
+                        closeSideMenu();
+                    } else {
+                        showTopAlert('❌ Incorrect password.', 'error');
+                    }
+                } else {
+                    // New user
+                    const name = email.split('@')[0];
+                    db.ref('users/' + dbKey).set({ email, password: encryptedPass, name })
+                        .then(() => {
+                            saveSession(email, name);
+                            showTopAlert('🎉 Registration successful!', 'success');
+                            updateUIForLoggedInUser(email, name);
+                            closeSideMenu();
+                        })
+                        .catch(err => showTopAlert('DB error: ' + err.message, 'error'));
+                }
+                resetProceedBtn();
+            }).catch(err => {
+                showTopAlert('Network error: ' + err.message, 'error');
+                resetProceedBtn();
+            });
+        }
+
+        function saveSession(email, name) {
+            localStorage.setItem('loggedInEmail', email);
+            localStorage.setItem('loggedInName', name);
+        }
+
+        function resetProceedBtn() {
+            const btn = document.getElementById('proceedBtn');
+            btn.innerText = 'Proceed';
+            btn.disabled = true;
+            btn.classList.remove('enabled');
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('loggedInEmail');
+            localStorage.removeItem('loggedInName');
+            updateUIForLoggedOutUser();
+            showTopAlert('👋 Logged out successfully.', 'success');
+            closeSideMenu();
+        }
+
+        function updateUIForLoggedInUser(email, name) {
+            document.getElementById('loginFormContainer').style.display = 'none';
+            document.getElementById('profileContainer').style.display = 'block';
+            const displayName = name.charAt(0).toUpperCase() + name.slice(1);
+            document.getElementById('profileName').innerHTML =
+                `${displayName} <span class="edit-icon" onclick="window.location.href='editprofile.html'">✏️</span>`;
+            document.getElementById('profileEmail').innerText = email;
+        }
+
+        function updateUIForLoggedOutUser() {
+            document.getElementById('loginFormContainer').style.display = 'flex';
+            document.getElementById('profileContainer').style.display = 'none';
+            document.getElementById('emailBox').value = '';
+            document.getElementById('passBox').value = '';
+            document.getElementById('proceedBtn').disabled = true;
+            document.getElementById('proceedBtn').classList.remove('enabled');
+        }
+
+        // ---- Validate Login Form ----
+        const emailInput = document.getElementById('emailBox');
+        const passInput = document.getElementById('passBox');
+        const proceedBtn = document.getElementById('proceedBtn');
+
+        function validateLogin() {
+            const emailValid = emailInput.value.includes('@gmail.com');
+            const passValid = passInput.value.length >= 8;
+            if (emailValid && passValid) {
+                proceedBtn.disabled = false;
+                proceedBtn.classList.add('enabled');
+            } else {
+                proceedBtn.disabled = true;
+                proceedBtn.classList.remove('enabled');
+            }
+        }
+
+        emailInput.addEventListener('input', validateLogin);
+        passInput.addEventListener('input', validateLogin);
+
+        // ---- Side Menu ----
+        function openSideMenu() {
+            document.getElementById('sideMenu').classList.add('active');
+            document.getElementById('sideMenuOverlay').classList.add('active');
+            history.pushState({ sideMenuOpen: true }, '');
+        }
+
+        function closeSideMenu(fromPopState) {
+            document.getElementById('sideMenu').classList.remove('active');
+            document.getElementById('sideMenuOverlay').classList.remove('active');
+            if (!fromPopState && history.state && history.state.sideMenuOpen) {
+                history.back();
+            }
+        }
+
+        window.addEventListener('popstate', function(event) {
+            if (document.getElementById('sideMenu').classList.contains('active')) {
+                closeSideMenu(true);
+            }
+        });
+
+        // ---- Top Alert ----
+        function showTopAlert(msg, type) {
+            const alertBox = document.getElementById('topAlert');
+            document.getElementById('topAlertMsg').innerText = msg;
+            if (type === 'error') {
+                alertBox.style.background = '#C0392B';
+            } else {
+                alertBox.style.background = 'rgba(44, 30, 22, 0.95)';
+            }
+            alertBox.classList.add('show');
+            setTimeout(closeTopAlert, 3500);
+        }
+
+        function closeTopAlert() {
+            document.getElementById('topAlert').classList.remove('show');
+        }
+
+        // ---- Modal ----
+        function showComingSoonModal() {
+            const modal = document.getElementById('comingSoonModal');
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeComingSoonModal() {
+            const modal = document.getElementById('comingSoonModal');
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        // ---- Utility: Prevent zoom on double tap ----
+        document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
+
+        console.log('✨ Dreamy Delight – Home Page Loaded');
+    </script>
+
 </body>
 </html>
