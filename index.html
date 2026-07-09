@@ -5,40 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <meta name="google-site-verification" content="_jHpaOx4b9myqd_cr8WEqHMwaD9xAn1Hcj5Z5Z0HdnQ" />
     <link rel="icon" type="image/jpeg" href="logo.jpg">
-    <title>Dreamy Delight</title>
+    <title>Dreamy Delight – Premium</title>
 
-    <!-- ===== PREMIUM GOLDEN THEME ===== -->
+    <!-- ===== PREMIUM GOLDEN GLASS STYLE ===== -->
     <style>
-        /* ---- IMPORT GOOGLE FONTS ---- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');
 
         :root {
-            --bg-color: #FCF8F2;          /* Cream – Comfort */
-            --primary-dark: #2C1E16;        /* Deep Brown – Stability */
-            --accent-gold: #D4A017;          /* Rich Gold – Luxury */
-            --accent-glow: #F5C842;          /* Bright Gold – Appetite */
-            --accent-soft: #F4E8D0;          /* Soft Beige – Clean */
-            --text-muted: #7A6B5D;            /* Warm grey */
+            --bg-color: #FCF8F2;
+            --primary-dark: #2C1E16;
+            --accent-gold: #D4A017;
+            --accent-glow: #F5C842;
+            --accent-soft: #F4E8D0;
+            --text-muted: #7A6B5D;
             --shadow-soft: 0 8px 30px rgba(0,0,0,0.06);
-            --glass-bg: rgba(255, 255, 255, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.25);
             --glass-border: rgba(255, 255, 255, 0.2);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', Arial, sans-serif; }
+        body { background: var(--bg-color); padding-bottom: 90px; overflow-x: hidden; color: var(--primary-dark); }
 
-        body {
-            background: var(--bg-color);
-            padding-bottom: 90px;
-            overflow-x: hidden;
-            color: var(--primary-dark);
-        }
-
-        /* ----- HEADER (Glass + Gold) ----- */
+        /* HEADER – GLASS + GOLD */
         .header {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(12px);
@@ -58,14 +46,12 @@
             position: relative;
             height: 45px;
         }
-
         .menu-icon {
             font-size: 32px;
             cursor: pointer;
             z-index: 2;
             color: var(--primary-dark);
             transition: transform 0.2s;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
         }
         .menu-icon:active { transform: scale(0.85); }
 
@@ -85,7 +71,6 @@
             z-index: 1;
             pointer-events: none;
             animation: shimmerGold 3s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(212, 160, 23, 0.15);
         }
 
         @keyframes shimmerGold {
@@ -94,7 +79,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ----- SLIDER (Glass Card) ----- */
+        /* SLIDER – GLASS */
         .slider {
             width: 92%;
             height: 200px;
@@ -140,10 +125,10 @@
             font-size: 18px;
             cursor: pointer;
             z-index: 10;
-            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: 0.2s;
         }
         .prev:hover, .next:hover {
             background: rgba(44, 30, 22, 0.8);
@@ -160,7 +145,6 @@
             justify-content: center;
             gap: 8px;
         }
-
         .dot {
             width: 10px;
             height: 10px;
@@ -177,7 +161,7 @@
             box-shadow: 0 0 16px rgba(245, 200, 66, 0.4);
         }
 
-        /* ----- TITLE ----- */
+        /* TITLE */
         .title {
             font-size: 28px;
             padding: 10px 20px 20px 20px;
@@ -197,7 +181,7 @@
             border-radius: 4px;
         }
 
-        /* ----- MENU GRID (Glass Cards) ----- */
+        /* MENU GRID – GLASS CARDS */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -220,7 +204,6 @@
         }
         .card:active {
             transform: scale(0.96);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             border-color: var(--accent-glow);
         }
         .card img {
@@ -231,20 +214,15 @@
             background: transparent;
             margin-bottom: 12px;
             filter: drop-shadow(0 12px 20px rgba(0,0,0,0.06));
-            transition: filter 0.3s;
-        }
-        .card:hover img {
-            filter: drop-shadow(0 16px 28px rgba(0,0,0,0.1));
         }
         .card h3 {
             margin-top: 8px;
             color: var(--primary-dark);
             font-size: 16px;
             font-weight: 700;
-            letter-spacing: 0.3px;
         }
 
-        /* ----- BOTTOM NAV (Glass) ----- */
+        /* BOTTOM NAV – GLASS */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -273,21 +251,16 @@
             padding: 4px 12px;
             border-radius: 30px;
         }
-        .bottom-nav div:active .icon { transform: scale(0.85); }
-
         .icon {
             font-size: 26px;
             margin-bottom: 2px;
             font-style: normal;
-            transition: transform 0.2s;
             display: block;
         }
-
         .active-nav {
             color: var(--accent-gold) !important;
             background: rgba(212, 160, 23, 0.08);
         }
-
         .cart-badge {
             position: absolute;
             top: -6px;
@@ -305,13 +278,12 @@
             border: 2px solid white;
             box-shadow: 0 2px 8px rgba(212, 160, 23, 0.3);
         }
-
         .icon-wrapper {
             position: relative;
             display: inline-block;
         }
 
-        /* ----- SIDE MENU (Glass) ----- */
+        /* SIDE MENU – GLASS (Quick version) */
         .side-menu-overlay {
             position: fixed;
             top: 0;
@@ -320,16 +292,13 @@
             height: 100vh;
             background: rgba(44, 30, 22, 0.4);
             backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
             z-index: 998;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.35s ease;
         }
-        .side-menu-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        .side-menu-overlay.active { opacity: 1;
+            pointer-events: auto; }
 
         .side-menu {
             position: fixed;
@@ -340,7 +309,6 @@
             height: 100vh;
             background: rgba(252, 248, 242, 0.92);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             z-index: 999;
             transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
@@ -350,7 +318,6 @@
             border-right: 1px solid rgba(255, 255, 255, 0.2);
         }
         .side-menu.active { left: 0; }
-
         .side-menu-top {
             display: flex;
             justify-content: space-between;
@@ -363,11 +330,9 @@
             cursor: pointer;
             background: none;
             border: none;
-            transition: transform 0.2s;
         }
-        .back-btn:active { transform: scale(0.85); }
 
-        /* ----- LOGIN AREA ----- */
+        /* LOGIN & PROFILE (Simplified) */
         .login-container {
             flex: 1;
             display: flex;
@@ -382,32 +347,22 @@
             background-size: contain;
             margin-bottom: 15px;
             opacity: 0.85;
-            filter: drop-shadow(0 8px 20px rgba(0,0,0,0.04));
         }
         .login-title {
             font-size: 30px;
             color: var(--primary-dark);
             font-weight: 900;
             margin-bottom: 30px;
-            letter-spacing: 1px;
         }
-
         .input-group {
             display: flex;
             align-items: center;
             width: 100%;
             background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(4px);
             padding: 15px 20px;
             border-radius: 18px;
             margin-bottom: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: border-color 0.2s;
-        }
-        .input-group:focus-within {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 0 4px rgba(245, 200, 66, 0.08);
         }
         .email-input {
             border: none;
@@ -418,7 +373,6 @@
             width: 100%;
             font-weight: 500;
         }
-
         .proceed-btn {
             width: 100%;
             background: #D4D0CC;
@@ -431,35 +385,16 @@
             cursor: not-allowed;
             transition: 0.3s ease;
             margin-top: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
         .proceed-btn.enabled {
             background: linear-gradient(135deg, var(--accent-glow), var(--accent-gold));
             color: var(--primary-dark);
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(212, 160, 23, 0.25);
         }
-        .proceed-btn.enabled:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(212, 160, 23, 0.3);
-        }
-
-        .login-disclaimer {
-            font-size: 12px;
-            color: var(--text-muted);
-            text-align: center;
-            margin-top: 25px;
-            line-height: 1.6;
-            padding: 0 5px;
-            margin-bottom: 70px;
-        }
-
-        /* ----- PROFILE ----- */
         .profile-container {
             display: none;
             width: 100%;
             padding: 0 20px;
-            padding-bottom: 50px;
         }
         .profile-header-info {
             display: flex;
@@ -467,11 +402,8 @@
             gap: 16px;
             margin-bottom: 35px;
             background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(6px);
             padding: 20px;
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-soft);
         }
         .avatar {
             width: 65px;
@@ -479,47 +411,19 @@
             background: #FFF9F5 url('logo.jpg') no-repeat center center;
             background-size: contain;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             border: 2px solid var(--accent-glow);
         }
         .user-details h2 {
             color: var(--primary-dark);
             font-size: 20px;
             font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
-        .edit-icon {
-            font-size: 16px;
-            cursor: pointer;
-            color: var(--accent-gold);
-            transition: transform 0.2s;
-            background: rgba(212, 160, 23, 0.08);
-            padding: 6px;
-            border-radius: 50%;
-            display: flex;
-        }
-        .edit-icon:active { transform: scale(0.8); }
-        .user-details p {
-            color: var(--text-muted);
-            font-size: 13px;
-            font-weight: 500;
-            margin-top: 4px;
-        }
-
         .profile-menu-list {
             display: flex;
             flex-direction: column;
             background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(6px);
             border-radius: 24px;
             padding: 8px 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-soft);
         }
         .profile-menu-item {
             display: flex;
@@ -531,19 +435,11 @@
             font-weight: 600;
             cursor: pointer;
             border-bottom: 1px solid rgba(0,0,0,0.03);
-            transition: background 0.2s;
-        }
-        .profile-menu-item:active {
-            background: rgba(212, 160, 23, 0.06);
         }
         .profile-menu-item:last-child { border-bottom: none; }
-        .menu-icon-img {
-            font-size: 20px;
-            width: 28px;
-            text-align: center;
-        }
+        .menu-icon-img { font-size: 20px; width: 28px; text-align: center; }
 
-        /* ----- TOAST / ALERT (Gold accent) ----- */
+        /* TOAST */
         .top-alert {
             position: fixed;
             top: -100px;
@@ -556,7 +452,6 @@
             color: white;
             padding: 16px 24px;
             border-radius: 20px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -565,11 +460,6 @@
             border: 1px solid rgba(255, 215, 0, 0.15);
         }
         .top-alert.show { top: 20px; }
-        .top-alert-msg {
-            font-size: 14px;
-            font-weight: 600;
-            flex: 1;
-        }
         .top-alert-close {
             cursor: pointer;
             font-size: 22px;
@@ -582,13 +472,9 @@
             justify-content: center;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            transition: background 0.2s;
-        }
-        .top-alert-close:hover {
-            background: rgba(255,255,255,0.2);
         }
 
-        /* ----- MODAL (Gold accent) ----- */
+        /* MODAL */
         .custom-modal {
             display: none;
             position: fixed;
@@ -598,17 +484,14 @@
             height: 100vh;
             background: rgba(44, 30, 22, 0.5);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        .custom-modal.show {
-            display: flex;
-            opacity: 1;
-        }
+        .custom-modal.show { display: flex;
+            opacity: 1; }
         .modal-content {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
@@ -618,12 +501,6 @@
             width: 85%;
             max-width: 340px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transform: translateY(20px) scale(0.96);
-            transition: transform 0.3s ease;
-        }
-        .custom-modal.show .modal-content {
-            transform: translateY(0) scale(1);
         }
         .close-modal-btn {
             background: linear-gradient(135deg, var(--accent-glow), var(--accent-gold));
@@ -636,24 +513,18 @@
             cursor: pointer;
             width: 100%;
             margin-top: 12px;
-            transition: transform 0.2s;
-            box-shadow: 0 4px 15px rgba(212, 160, 23, 0.2);
         }
-        .close-modal-btn:active { transform: scale(0.96); }
 
-        /* ----- RESPONSIVE ----- */
         @media (max-width: 600px) {
             .brand-title { font-size: 24px; }
-            .menu-grid { gap: 12px; }
             .card img { height: 120px; }
         }
     </style>
 
-    <!-- ===== FIREBASE SDK ===== -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="firebase-config.js"></script>
-
 </head>
 <body>
 
@@ -699,16 +570,12 @@
         <div onclick="showComingSoonModal()"><span class="icon">🎁</span>Rewards</div>
     </nav>
 
-    <!-- ===== SIDE MENU OVERLAY ===== -->
-    <div class="side-menu-overlay" id="sideMenuOverlay" onclick="closeSideMenu()"></div>
-
     <!-- ===== SIDE MENU ===== -->
+    <div class="side-menu-overlay" id="sideMenuOverlay" onclick="closeSideMenu()"></div>
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-top">
             <button class="back-btn" onclick="closeSideMenu()">← Back</button>
         </div>
-
-        <!-- Login Form -->
         <div class="login-container" id="loginFormContainer">
             <div class="splash-img"></div>
             <h1 class="login-title">Welcome Back</h1>
@@ -721,16 +588,14 @@
                 </div>
                 <button id="proceedBtn" class="proceed-btn" disabled onclick="handleDatabaseAuth()">Proceed</button>
             </div>
-            <p class="login-disclaimer">No password reset yet. Contact customer care if needed.</p>
+            <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:25px;">No password reset yet. Contact customer care if needed.</p>
         </div>
-
-        <!-- Profile -->
         <div class="profile-container" id="profileContainer">
             <div class="profile-header-info">
                 <div class="avatar"></div>
                 <div class="user-details">
-                    <h2 id="profileName">User <span class="edit-icon" onclick="window.location.href='editprofile.html'">✏️</span></h2>
-                    <p id="profileEmail">user@gmail.com</p>
+                    <h2 id="profileName">User <span style="font-size:16px;cursor:pointer;color:var(--accent-gold);" onclick="window.location.href='editprofile.html'">✏️</span></h2>
+                    <p id="profileEmail" style="color:var(--text-muted);font-size:13px;">user@gmail.com</p>
                 </div>
             </div>
             <div class="profile-menu-list">
@@ -748,9 +613,9 @@
     <!-- ===== MODAL (Coming Soon) ===== -->
     <div id="comingSoonModal" class="custom-modal">
         <div class="modal-content">
-            <div style="font-size:50px; margin-bottom:10px;">🎁</div>
-            <h2 style="color:var(--primary-dark); margin-bottom:10px;">Coming Soon!</h2>
-            <p style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">Exciting rewards are on the way. Stay tuned!</p>
+            <div style="font-size:50px;margin-bottom:10px;">🎁</div>
+            <h2 style="color:var(--primary-dark);">Coming Soon!</h2>
+            <p style="color:var(--text-muted);font-size:14px;margin:15px 0;">Exciting rewards are on the way. Stay tuned!</p>
             <button class="close-modal-btn" onclick="closeComingSoonModal()">Got It</button>
         </div>
     </div>
@@ -759,94 +624,34 @@
     <!-- ===================== JAVASCRIPT ========================== -->
     <!-- ========================================================= -->
     <script>
-        // ---- Ensure Firebase is loaded ----
-        if (typeof firebase === 'undefined') {
-            alert('Firebase not loaded. Check internet connection.');
-        } else {
-            console.log('🔥 Firebase ready');
-        }
-
-        const db = firebase.database();
-
-        // ---- Slider & Categories ----
-        let sliderIndex = 0;
-        let autoSliderTimer;
-
+        // ---- FALLBACK DATA (IMMEDIATE VISIBLE) ----
         const fallbackBanners = [
             'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=400&fit=crop'
+            'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1551892372-ecf8754cf8df?w=800&h=400&fit=crop'
         ];
+
         const fallbackCategories = [
-            { id: 'pizza', name: 'Pizza', img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
-            { id: 'burger', name: 'Burger', img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png' },
-            { id: 'pasta', name: 'Pasta', img: 'https://cdn-icons-png.flaticon.com/512/2926/2926935.png' },
-            { id: 'sides', name: 'Sides', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710281.png' }
+            { id: 'pizza', name: '🍕 Pizza', img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
+            { id: 'burger', name: '🍔 Burger', img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png' },
+            { id: 'pasta', name: '🍝 Pasta', img: 'https://cdn-icons-png.flaticon.com/512/2926/2926935.png' },
+            { id: 'sides', name: '🍟 Sides', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710281.png' },
+            { id: 'beverages', name: '🥤 Beverages', img: 'https://cdn-icons-png.flaticon.com/512/3093/3093357.png' },
+            { id: 'desserts', name: '🍰 Desserts', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710302.png' }
         ];
 
-        // ---- Load data from Firebase or fallback ----
-        document.addEventListener('DOMContentLoaded', () => {
-            // Load banners
-            const cachedBanners = localStorage.getItem('userCachedHomeLayout');
-            if (cachedBanners) {
-                try {
-                    const parsed = JSON.parse(cachedBanners);
-                    if (parsed.banners && parsed.banners.length) {
-                        buildLiveSlider(parsed.banners);
-                    } else {
-                        buildLiveSlider(fallbackBanners);
-                    }
-                } catch (e) {
-                    buildLiveSlider(fallbackBanners);
-                }
-            } else {
-                buildLiveSlider(fallbackBanners);
-            }
+        // ---- DOM READY ----
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Slider ko fallback se populate karo
+            buildLiveSlider(fallbackBanners);
 
-            // Load categories
-            const cachedCats = localStorage.getItem('userCachedMenuCats');
-            if (cachedCats) {
-                try {
-                    const parsed = JSON.parse(cachedCats);
-                    if (parsed.length) {
-                        buildUserCategoriesGrid(parsed);
-                    } else {
-                        buildUserCategoriesGrid(fallbackCategories);
-                    }
-                } catch (e) {
-                    buildUserCategoriesGrid(fallbackCategories);
-                }
-            } else {
-                buildUserCategoriesGrid(fallbackCategories);
-            }
+            // 2. Categories ko fallback se populate karo
+            buildUserCategoriesGrid(fallbackCategories);
 
-            // Listen for real-time updates
-            db.ref('homepage_config').on('value', (snapshot) => {
-                if (snapshot.exists()) {
-                    const config = snapshot.val();
-                    localStorage.setItem('userCachedHomeLayout', JSON.stringify(config));
-                    if (config.banners) {
-                        const banners = Array.isArray(config.banners) ? config.banners : Object.values(config.banners);
-                        if (banners.length) buildLiveSlider(banners);
-                    }
-                    if (config.brandTitle) {
-                        document.getElementById('displayBrandTitle').innerText = config.brandTitle;
-                    }
-                }
-            });
-
-            db.ref('menu_categories').on('value', (snapshot) => {
-                if (snapshot.exists()) {
-                    const val = snapshot.val();
-                    const cats = Array.isArray(val) ? val : Object.values(val);
-                    localStorage.setItem('userCachedMenuCats', JSON.stringify(cats));
-                    buildUserCategoriesGrid(cats);
-                }
-            });
-
-            // Cart badge
+            // 3. Cart Badge update
             updateCartBadge();
 
-            // Login session
+            // 4. Login session check
             const savedEmail = localStorage.getItem('loggedInEmail');
             const savedName = localStorage.getItem('loggedInName');
             if (savedEmail) {
@@ -855,10 +660,38 @@
                 updateUIForLoggedOutUser();
             }
 
+            // 5. Auto-slider start
             startAutoSlider();
+
+            // 6. Firebase real-time listeners (optional update)
+            if (typeof firebase !== 'undefined' && firebase.database) {
+                const db = firebase.database();
+                db.ref('homepage_config').on('value', (snapshot) => {
+                    if (snapshot.exists()) {
+                        const config = snapshot.val();
+                        if (config.brandTitle) {
+                            document.getElementById('displayBrandTitle').innerText = config.brandTitle;
+                        }
+                        if (config.banners) {
+                            const banners = Array.isArray(config.banners) ? config.banners : Object.values(config
+                            .banners);
+                            if (banners.length) buildLiveSlider(banners);
+                        }
+                    }
+                });
+                db.ref('menu_categories').on('value', (snapshot) => {
+                    if (snapshot.exists()) {
+                        const val = snapshot.val();
+                        const cats = Array.isArray(val) ? val : Object.values(val);
+                        if (cats.length) buildUserCategoriesGrid(cats);
+                    }
+                });
+            }
+
+            console.log('✨ Dreamy Delight – Home Loaded with Fallback Data');
         });
 
-        // ---- Build Slider ----
+        // ---- BUILD SLIDER ----
         function buildLiveSlider(banners) {
             const container = document.getElementById('userSlidesContainer');
             container.innerHTML = '';
@@ -883,6 +716,9 @@
             }
         }
 
+        let sliderIndex = 0;
+        let autoSliderTimer;
+
         function updateSliderPosition() {
             const slides = document.querySelectorAll('#userSlidesContainer .slide');
             const total = slides.length;
@@ -890,7 +726,6 @@
             if (sliderIndex >= total) sliderIndex = 0;
             if (sliderIndex < 0) sliderIndex = total - 1;
             document.getElementById('userSlidesContainer').style.transform = `translateX(-${sliderIndex * 100}%)`;
-
             const dots = document.querySelectorAll('#userDotsContainer .dot');
             dots.forEach((d, i) => d.classList.toggle('active', i === sliderIndex));
         }
@@ -906,7 +741,7 @@
             autoSliderTimer = setInterval(() => nextSlide(), 4000);
         }
 
-        // ---- Build Categories ----
+        // ---- BUILD CATEGORIES ----
         function buildUserCategoriesGrid(cats) {
             const grid = document.getElementById('userCategoriesContainer');
             grid.innerHTML = '';
@@ -922,7 +757,7 @@
             });
         }
 
-        // ---- Cart Badge ----
+        // ---- CART BADGE ----
         function updateCartBadge() {
             const cart = JSON.parse(localStorage.getItem('myCart')) || [];
             const total = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
@@ -931,51 +766,57 @@
             badge.style.display = total > 0 ? 'flex' : 'none';
         }
 
-        // ---- Authentication ----
+        // ---- AUTH ----
         function handleDatabaseAuth() {
             const email = document.getElementById('emailBox').value.trim().toLowerCase();
             const pass = document.getElementById('passBox').value;
             const btn = document.getElementById('proceedBtn');
-
             if (!email.includes('@gmail.com') || pass.length < 8) {
-                showTopAlert('Please enter a valid @gmail.com email and min 8 chars password.', 'error');
+                showTopAlert('Enter valid @gmail.com & min 8 chars password.', 'error');
                 return;
             }
-
             btn.innerText = 'Processing...';
             btn.disabled = true;
-
             const dbKey = email.replace(/\./g, ',');
             const encryptedPass = btoa(pass + '_dreamySec');
 
-            db.ref('users/' + dbKey).once('value').then(snap => {
-                if (snap.exists()) {
-                    const data = snap.val();
-                    if (data.password === encryptedPass || data.password === pass) {
-                        saveSession(email, data.name || email.split('@')[0]);
-                        showTopAlert('✅ Login successful!', 'success');
-                        updateUIForLoggedInUser(email, data.name || email.split('@')[0]);
-                        closeSideMenu();
-                    } else {
-                        showTopAlert('❌ Incorrect password.', 'error');
-                    }
-                } else {
-                    // New user
-                    const name = email.split('@')[0];
-                    db.ref('users/' + dbKey).set({ email, password: encryptedPass, name })
-                        .then(() => {
-                            saveSession(email, name);
-                            showTopAlert('🎉 Registration successful!', 'success');
-                            updateUIForLoggedInUser(email, name);
+            if (typeof firebase !== 'undefined' && firebase.database) {
+                const db = firebase.database();
+                db.ref('users/' + dbKey).once('value').then(snap => {
+                    if (snap.exists()) {
+                        const data = snap.val();
+                        if (data.password === encryptedPass || data.password === pass) {
+                            saveSession(email, data.name || email.split('@')[0]);
+                            showTopAlert('✅ Login successful!', 'success');
+                            updateUIForLoggedInUser(email, data.name || email.split('@')[0]);
                             closeSideMenu();
-                        })
-                        .catch(err => showTopAlert('DB error: ' + err.message, 'error'));
-                }
+                        } else {
+                            showTopAlert('❌ Incorrect password.', 'error');
+                        }
+                    } else {
+                        const name = email.split('@')[0];
+                        db.ref('users/' + dbKey).set({ email, password: encryptedPass, name })
+                            .then(() => {
+                                saveSession(email, name);
+                                showTopAlert('🎉 Registration successful!', 'success');
+                                updateUIForLoggedInUser(email, name);
+                                closeSideMenu();
+                            })
+                            .catch(err => showTopAlert('DB error: ' + err.message, 'error'));
+                    }
+                    resetProceedBtn();
+                }).catch(err => {
+                    showTopAlert('Network error: ' + err.message, 'error');
+                    resetProceedBtn();
+                });
+            } else {
+                // Firebase not available – fallback login
+                saveSession(email, email.split('@')[0]);
+                showTopAlert('✅ Login successful! (Firebase fallback)', 'success');
+                updateUIForLoggedInUser(email, email.split('@')[0]);
+                closeSideMenu();
                 resetProceedBtn();
-            }).catch(err => {
-                showTopAlert('Network error: ' + err.message, 'error');
-                resetProceedBtn();
-            });
+            }
         }
 
         function saveSession(email, name) {
@@ -994,7 +835,7 @@
             localStorage.removeItem('loggedInEmail');
             localStorage.removeItem('loggedInName');
             updateUIForLoggedOutUser();
-            showTopAlert('👋 Logged out successfully.', 'success');
+            showTopAlert('👋 Logged out.', 'success');
             closeSideMenu();
         }
 
@@ -1003,7 +844,7 @@
             document.getElementById('profileContainer').style.display = 'block';
             const displayName = name.charAt(0).toUpperCase() + name.slice(1);
             document.getElementById('profileName').innerHTML =
-                `${displayName} <span class="edit-icon" onclick="window.location.href='editprofile.html'">✏️</span>`;
+                `${displayName} <span style="font-size:16px;cursor:pointer;color:var(--accent-gold);" onclick="window.location.href='editprofile.html'">✏️</span>`;
             document.getElementById('profileEmail').innerText = email;
         }
 
@@ -1016,7 +857,7 @@
             document.getElementById('proceedBtn').classList.remove('enabled');
         }
 
-        // ---- Validate Login Form ----
+        // ---- FORM VALIDATION ----
         const emailInput = document.getElementById('emailBox');
         const passInput = document.getElementById('passBox');
         const proceedBtn = document.getElementById('proceedBtn');
@@ -1032,11 +873,10 @@
                 proceedBtn.classList.remove('enabled');
             }
         }
-
         emailInput.addEventListener('input', validateLogin);
         passInput.addEventListener('input', validateLogin);
 
-        // ---- Side Menu ----
+        // ---- SIDE MENU ----
         function openSideMenu() {
             document.getElementById('sideMenu').classList.add('active');
             document.getElementById('sideMenuOverlay').classList.add('active');
@@ -1051,21 +891,18 @@
             }
         }
 
-        window.addEventListener('popstate', function(event) {
+        window.addEventListener('popstate', function() {
             if (document.getElementById('sideMenu').classList.contains('active')) {
                 closeSideMenu(true);
             }
         });
 
-        // ---- Top Alert ----
+        // ---- TOAST ----
         function showTopAlert(msg, type) {
             const alertBox = document.getElementById('topAlert');
             document.getElementById('topAlertMsg').innerText = msg;
-            if (type === 'error') {
-                alertBox.style.background = '#C0392B';
-            } else {
-                alertBox.style.background = 'rgba(44, 30, 22, 0.95)';
-            }
+            if (type === 'error') alertBox.style.background = '#C0392B';
+            else alertBox.style.background = 'rgba(44, 30, 22, 0.95)';
             alertBox.classList.add('show');
             setTimeout(closeTopAlert, 3500);
         }
@@ -1074,7 +911,7 @@
             document.getElementById('topAlert').classList.remove('show');
         }
 
-        // ---- Modal ----
+        // ---- MODAL ----
         function showComingSoonModal() {
             const modal = document.getElementById('comingSoonModal');
             modal.style.display = 'flex';
@@ -1087,10 +924,9 @@
             setTimeout(() => modal.style.display = 'none', 300);
         }
 
-        // ---- Utility: Prevent zoom on double tap ----
+        // ---- MISC ----
         document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
-
-        console.log('✨ Dreamy Delight – Home Page Loaded');
+        console.log('🔥 Dreamy Delight – Home Page Loaded');
     </script>
 
 </body>
