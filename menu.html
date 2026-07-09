@@ -12,7 +12,6 @@
     <script src="firebase-config.js"></script>
 
     <style>
-        /* (same as before, unchanged) */
         :root {
             --bg-color: #FCF9F2;
             --primary-dark: #2C1E16;
@@ -30,7 +29,6 @@
         body { background: var(--bg-color); padding-bottom: 70px; overflow-x: hidden; color: var(--primary-dark); }
         ::-webkit-scrollbar { display: none; }
 
-        /* HEADER – GOLDEN GLASS */
         .topbar {
             height: 65px;
             background: rgba(255, 230, 109, 0.6);
@@ -90,10 +88,8 @@
         .search-input-header:focus { border-color: var(--accent-glow); box-shadow: 0 0 0 3px rgba(245,200,66,0.1); }
         .search-input-header::placeholder { color: var(--text-muted); font-weight: normal; }
 
-        /* MAIN LAYOUT */
         .main { display: flex; height: calc(100vh - 65px); overflow: hidden; }
 
-        /* FOOD LIST ON LEFT – GLASS CARDS */
         .food-list {
             flex: 1;
             overflow-y: auto;
@@ -166,7 +162,6 @@
 
         .food-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
 
-        /* PRICE WITH DISCOUNT STYLING */
         .price-container {
             display: flex;
             align-items: center;
@@ -213,7 +208,6 @@
         }
         .add-btn:active { transform: scale(0.95); }
 
-        /* CATEGORY SIDEBAR – GLASS */
         .category {
             width: 95px;
             background: rgba(255, 249, 245, 0.4);
@@ -267,7 +261,7 @@
         }
         .cat-box.active p { color: var(--accent-gold) !important; }
 
-        /* ===== BOTTOM NAV – GLASS + BLACK SVG ICONS ===== */
+        /* BOTTOM NAV */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -387,7 +381,6 @@
         .modal-content { background: white; padding: 30px 20px; border-radius: 25px; text-align: center; width: 80%; max-width: 320px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transform: translateY(20px) scale(0.95); transition: transform 0.3s ease; }
         .close-modal-btn { background: var(--accent-color); color: white; border: none; padding: 14px 30px; border-radius: 15px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
 
-        /* IMAGE PREVIEW MODAL */
         .image-preview-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.85); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.3s ease; }
         .image-preview-overlay.show { display: flex; opacity: 1; }
         .image-preview-content { position: relative; width: 90%; max-width: 400px; }
@@ -425,49 +418,38 @@
 
     <!-- MAIN -->
     <div class="main" id="mainContainer">
-        <!-- FOOD LIST (LEFT) -->
         <div class="food-list" id="foodList">
             <!-- Items will be injected here -->
         </div>
-
-        <!-- CATEGORY SIDEBAR (RIGHT) -->
         <div class="category" id="categorySidebar">
             <!-- Categories will be loaded here -->
         </div>
     </div>
 
-    <!-- BOTTOM NAV – CUSTOM SVG ICONS (BLACK) -->
+    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
         <div onclick="window.location.href='index.html'">
-            <span class="nav-icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L1 12h3v9h6v-6h4v6h6v-9h3L12 2z"/></svg>
-            </span>
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2L1 12h3v9h6v-6h4v6h6v-9h3L12 2z"/></svg></span>
             Home
         </div>
         <div class="active-nav" onclick="window.location.href='menu.html'">
-            <span class="nav-icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 4h10v2H7V4zm0 4h10v2H7V8zm0 4h10v2H7v-2zm-2 4h14v2H5v-2z"/></svg>
-            </span>
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 4h10v2H7V4zm0 4h10v2H7V8zm0 4h10v2H7v-2zm-2 4h14v2H5v-2z"/></svg></span>
             Menu
         </div>
         <div onclick="window.location.href='cart.html'">
             <span class="icon-wrapper">
-                <span class="nav-icon">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h3l3.6 7.59-1.35 2.45C6.07 14.74 6.82 16 8 16h10v-2H8.42l.6-1H18l3-7H5.21l-.94-2H1z"/></svg>
-                </span>
+                <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h3l3.6 7.59-1.35 2.45C6.07 14.74 6.82 16 8 16h10v-2H8.42l.6-1H18l3-7H5.21l-.94-2H1z"/></svg></span>
                 <span class="cart-badge" id="cartCount">0</span>
             </span>
             Cart
         </div>
         <div onclick="showComingSoonModal()">
-            <span class="nav-icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            </span>
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
             Rewards
         </div>
     </nav>
 
-    <!-- SIDE MENU (same as index) -->
+    <!-- SIDE MENU (unchanged) -->
     <div class="side-menu-overlay" id="sideMenuOverlay" onclick="closeSideMenu()"></div>
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-top"><button class="back-btn" onclick="closeSideMenu()">← Back</button></div>
@@ -501,7 +483,7 @@
         </div>
     </div>
 
-    <!-- IMAGE PREVIEW OVERLAY -->
+    <!-- IMAGE PREVIEW -->
     <div class="image-preview-overlay" id="imagePreviewOverlay" onclick="closeImagePreview()">
         <div class="image-preview-content" onclick="event.stopPropagation();">
             <img class="image-preview-img" id="previewImage" src="" alt="preview">
@@ -526,7 +508,7 @@
         // ---- Global variables ----
         let allItems = [];
         let allCategories = [];
-        let currentCategory = 'all';
+        let currentCategory = null; // will be set to first category after load
         const db = firebase.database();
 
         // ---- DOM ready ----
@@ -542,27 +524,29 @@
                 updateUIForLoggedOutUser();
             }
 
-            // Search input listener
             document.getElementById('searchInput').addEventListener('input', filterFoods);
         });
 
-        // ============================================================
-        // 🔥 LOAD CATEGORIES AND ITEMS — SYNC WITH ADMIN PANEL
-        // ============================================================
+        // ---- Load categories and items from Firebase ----
         function loadCategoriesAndItems() {
-            // Load categories from admin panel path: menu_categories
+            // Load categories
             db.ref('menu_categories').on('value', snapshot => {
                 if (snapshot.exists()) {
                     const val = snapshot.val();
                     allCategories = Array.isArray(val) ? val : Object.values(val);
                 } else {
-                    // Fallback
-                    allCategories = getFallbackCategories();
+                    allCategories = [];
+                }
+                // Set default category to first one if available
+                if (allCategories.length > 0 && !currentCategory) {
+                    currentCategory = allCategories[0].id;
                 }
                 renderCategories();
+                // Re-render foods if items already loaded
+                if (allItems.length) renderFoods();
             });
 
-            // Load products from admin panel path: menu_config
+            // Load products
             db.ref('menu_config').on('value', snapshot => {
                 if (snapshot.exists()) {
                     const val = snapshot.val();
@@ -575,31 +559,18 @@
             });
         }
 
-        function getFallbackCategories() {
-            return [
-                { id: 'pizza', name: 'Pizza', img: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png' },
-                { id: 'burger', name: 'Burger', img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png' },
-                { id: 'pasta', name: 'Pasta', img: 'https://cdn-icons-png.flaticon.com/512/2926/2926935.png' },
-                { id: 'sides', name: 'Sides', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710281.png' },
-                { id: 'desserts', name: 'Desserts', img: 'https://cdn-icons-png.flaticon.com/512/2710/2710302.png' }
-            ];
-        }
-
-        // ---- Render Categories ----
+        // ---- Render Categories (NO "ALL" category) ----
         function renderCategories() {
             const sidebar = document.getElementById('categorySidebar');
             sidebar.innerHTML = '';
-            // All category
-            const allCat = document.createElement('div');
-            allCat.className = 'cat-box active';
-            allCat.dataset.cat = 'all';
-            allCat.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"><p>All</p>`;
-            allCat.onclick = () => { selectCategory('all', allCat); };
-            sidebar.appendChild(allCat);
-
+            if (allCategories.length === 0) {
+                sidebar.innerHTML = '<div style="text-align:center;color:var(--text-muted);padding:20px 0;font-size:12px;">No categories</div>';
+                return;
+            }
             allCategories.forEach(cat => {
                 const box = document.createElement('div');
                 box.className = 'cat-box';
+                if (cat.id === currentCategory) box.classList.add('active');
                 box.dataset.cat = cat.id;
                 const imgSrc = cat.img || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
                 box.innerHTML = `<img src="${imgSrc}"><p>${cat.name}</p>`;
@@ -616,20 +587,24 @@
             renderFoods();
         }
 
-        // ---- Render Foods with DISCOUNT SUPPORT ----
+        // ---- Render Foods with discount support ----
         function renderFoods() {
             const list = document.getElementById('foodList');
             let filtered = allItems;
 
-            // Filter by category
-            if (currentCategory !== 'all') {
+            // Filter by current category
+            if (currentCategory) {
                 filtered = filtered.filter(item => item.category === currentCategory);
+            } else {
+                // If no category selected, show all? But we removed All, so default to first category if any.
+                // However, if categories exist but currentCategory is null (should not happen), show all.
+                // We'll just show all if no category selected.
             }
 
-            // Apply search filter
+            // Apply search
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             if (searchTerm) {
-                filtered = filtered.filter(item => 
+                filtered = filtered.filter(item =>
                     (item.title || item.name || '').toLowerCase().includes(searchTerm) ||
                     (item.desc || '').toLowerCase().includes(searchTerm)
                 );
@@ -646,15 +621,12 @@
                 const price = item.price || 0;
                 const img = item.img || 'https://via.placeholder.com/110';
                 const desc = item.desc || '';
-                const category = item.category || '';
-
-                // ---- DISCOUNT LOGIC ----
                 const discount = item.discount || 0;
                 const originalPrice = item.originalPrice || price;
                 const discountedPrice = discount > 0 ? Math.round(originalPrice * (1 - discount/100)) : price;
                 const hasDiscount = discount > 0 && discount < 100;
 
-                // ---- PRICE HTML ----
+                // Price HTML
                 let priceHtml = '';
                 if (hasDiscount && originalPrice > discountedPrice) {
                     priceHtml = `
@@ -668,7 +640,7 @@
                     priceHtml = `<span class="price-normal">₹${price}</span>`;
                 }
 
-                // ---- DISCOUNT BADGE ON IMAGE ----
+                // Discount badge on image
                 let discountBadgeHtml = '';
                 if (hasDiscount) {
                     discountBadgeHtml = `<div class="discount-badge">${discount}%<small>OFF</small></div>`;
@@ -694,7 +666,7 @@
             list.innerHTML = html;
         }
 
-        // ---- Search filter ----
+        // ---- Filter by search ----
         function filterFoods() {
             renderFoods();
         }
@@ -713,7 +685,7 @@
             showTopAlert(`✅ ${name} added to cart!`, 'success');
         }
 
-        // ---- Update cart badge ----
+        // ---- Cart badge ----
         function updateCartBadge() {
             const cart = JSON.parse(localStorage.getItem('myCart')) || [];
             const total = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
@@ -732,7 +704,7 @@
             document.getElementById('imagePreviewOverlay').classList.remove('show');
         }
 
-        // ---- Auth functions ----
+        // ---- Auth functions (unchanged) ----
         function handleDatabaseAuth() {
             const email = document.getElementById('emailBox').value.trim().toLowerCase();
             const pass = document.getElementById('passBox').value;
@@ -883,7 +855,8 @@
         // ---- Prevent zoom ----
         document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
 
-        console.log('🍽️ Dreamy Delight – Menu Page with Admin Panel Sync Loaded');
+        console.log('🍽️ Dreamy Delight – Menu Page (Admin Sync, No All Category) Loaded');
     </script>
+
 </body>
 </html>
