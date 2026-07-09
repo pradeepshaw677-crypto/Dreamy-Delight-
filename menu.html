@@ -6,7 +6,6 @@
     <link rel="icon" type="image/jpeg" href="logo.jpg">
     <title>Dreamy Delight – Menu</title>
 
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="firebase-config.js"></script>
@@ -133,7 +132,6 @@
         }
         .food-img:active { transform: scale(0.95); }
 
-        /* DISCOUNT BADGE – RED WITH PERCENTAGE */
         .discount-badge {
             position: absolute;
             top: -5px;
@@ -261,7 +259,6 @@
         }
         .cat-box.active p { color: var(--accent-gold) !important; }
 
-        /* BOTTOM NAV */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -417,35 +414,27 @@
     </div>
 
     <!-- MAIN -->
-    <div class="main" id="mainContainer">
-        <div class="food-list" id="foodList">
-            <!-- Items will be injected here -->
-        </div>
-        <div class="category" id="categorySidebar">
-            <!-- Categories will be loaded here -->
-        </div>
+    <div class="main">
+        <div class="food-list" id="foodList"></div>
+        <div class="category" id="categorySidebar"></div>
     </div>
 
     <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
         <div onclick="window.location.href='index.html'">
-            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2L1 12h3v9h6v-6h4v6h6v-9h3L12 2z"/></svg></span>
-            Home
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 2L1 12h3v9h6v-6h4v6h6v-9h3L12 2z"/></svg></span> Home
         </div>
         <div class="active-nav" onclick="window.location.href='menu.html'">
-            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 4h10v2H7V4zm0 4h10v2H7V8zm0 4h10v2H7v-2zm-2 4h14v2H5v-2z"/></svg></span>
-            Menu
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 4h10v2H7V4zm0 4h10v2H7V8zm0 4h10v2H7v-2zm-2 4h14v2H5v-2z"/></svg></span> Menu
         </div>
         <div onclick="window.location.href='cart.html'">
             <span class="icon-wrapper">
                 <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h3l3.6 7.59-1.35 2.45C6.07 14.74 6.82 16 8 16h10v-2H8.42l.6-1H18l3-7H5.21l-.94-2H1z"/></svg></span>
                 <span class="cart-badge" id="cartCount">0</span>
-            </span>
-            Cart
+            </span> Cart
         </div>
         <div onclick="showComingSoonModal()">
-            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span>
-            Rewards
+            <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></span> Rewards
         </div>
     </nav>
 
@@ -501,21 +490,16 @@
         </div>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- ===================== JAVASCRIPT ========================== -->
-    <!-- ========================================================= -->
     <script>
         // ---- Global variables ----
         let allItems = [];
         let allCategories = [];
-        let currentCategory = null; // will be set to first category after load
+        let currentCategory = null;
         const db = firebase.database();
 
-        // ---- DOM ready ----
         document.addEventListener('DOMContentLoaded', function() {
             loadCategoriesAndItems();
             updateCartBadge();
-
             const savedEmail = localStorage.getItem('loggedInEmail');
             const savedName = localStorage.getItem('loggedInName');
             if (savedEmail) {
@@ -523,11 +507,10 @@
             } else {
                 updateUIForLoggedOutUser();
             }
-
             document.getElementById('searchInput').addEventListener('input', filterFoods);
         });
 
-        // ---- Load categories and items from Firebase ----
+        // ---- Load categories and items (real-time) ----
         function loadCategoriesAndItems() {
             // Load categories
             db.ref('menu_categories').on('value', snapshot => {
@@ -537,16 +520,15 @@
                 } else {
                     allCategories = [];
                 }
-                // Set default category to first one if available
+                // Set default category to first one
                 if (allCategories.length > 0 && !currentCategory) {
                     currentCategory = allCategories[0].id;
                 }
                 renderCategories();
-                // Re-render foods if items already loaded
                 if (allItems.length) renderFoods();
             });
 
-            // Load products
+            // Load products from menu_config (admin panel)
             db.ref('menu_config').on('value', snapshot => {
                 if (snapshot.exists()) {
                     const val = snapshot.val();
@@ -555,11 +537,11 @@
                     allItems = [];
                 }
                 renderFoods();
-                console.log('✅ Products loaded from menu_config:', allItems.length);
+                console.log('✅ Products loaded:', allItems.length);
             });
         }
 
-        // ---- Render Categories (NO "ALL" category) ----
+        // ---- Render Categories (NO "ALL") ----
         function renderCategories() {
             const sidebar = document.getElementById('categorySidebar');
             sidebar.innerHTML = '';
@@ -587,18 +569,17 @@
             renderFoods();
         }
 
-        // ---- Render Foods with discount support ----
+        // ---- Render Foods (SIRF CATEGORY-WISE) ----
         function renderFoods() {
             const list = document.getElementById('foodList');
-            let filtered = allItems;
+            let filtered = [];
 
-            // Filter by current category
+            // Filter by current category only
             if (currentCategory) {
-                filtered = filtered.filter(item => item.category === currentCategory);
+                filtered = allItems.filter(item => item.category === currentCategory);
             } else {
-                // If no category selected, show all? But we removed All, so default to first category if any.
-                // However, if categories exist but currentCategory is null (should not happen), show all.
-                // We'll just show all if no category selected.
+                // If no category selected, show empty (or all if you want — but we want category-wise)
+                filtered = [];
             }
 
             // Apply search
@@ -626,7 +607,6 @@
                 const discountedPrice = discount > 0 ? Math.round(originalPrice * (1 - discount/100)) : price;
                 const hasDiscount = discount > 0 && discount < 100;
 
-                // Price HTML
                 let priceHtml = '';
                 if (hasDiscount && originalPrice > discountedPrice) {
                     priceHtml = `
@@ -640,7 +620,6 @@
                     priceHtml = `<span class="price-normal">₹${price}</span>`;
                 }
 
-                // Discount badge on image
                 let discountBadgeHtml = '';
                 if (hasDiscount) {
                     discountBadgeHtml = `<div class="discount-badge">${discount}%<small>OFF</small></div>`;
@@ -852,10 +831,9 @@
             setTimeout(() => modal.style.display = 'none', 300);
         }
 
-        // ---- Prevent zoom ----
         document.addEventListener('gesturestart', function(e) { e.preventDefault(); });
 
-        console.log('🍽️ Dreamy Delight – Menu Page (Admin Sync, No All Category) Loaded');
+        console.log('🍽️ Dreamy Delight – Category-wise Menu Loaded');
     </script>
 
 </body>
